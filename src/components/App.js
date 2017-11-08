@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Editor from './Editor';
-import ObstacleContainer from './ObstacleContainer';
+import ChallengeContainer from './ChallengeContainer'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Editor /> 
-        <ObstacleContainer />
+        <ChallengeContainer />
       </div>
     );
   }
