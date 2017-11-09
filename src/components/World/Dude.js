@@ -23,8 +23,8 @@ class Dude extends React.Component {
         y={this.props.position.y}
         image={this.state.image}
         listening={true}
-        height={100}
-        width={100}
+        height={50}
+        width={50}
       />
     )
   }
