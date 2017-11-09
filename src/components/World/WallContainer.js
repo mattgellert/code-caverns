@@ -3,30 +3,21 @@ import {Rect, Layer} from 'react-konva';
 
 class WallContainer extends React.Component {
   render() {
+    const wallElements = this.props.walls.map(({x, y, width, height, fill}) => {
+      return (
+        <Rect 
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill={fill}
+        />
+      )
+    });
+
     return (
       <Layer>
-        <Rect 
-          x={0}
-          y={0}
-          width={52}
-          height={250}
-          fill="#fff203"
-        />
-
-        <Rect 
-          x={0}
-          y={500}
-          width={52}
-          height={250}
-          fill="#fff203"
-        />
-        <Rect 
-          x={1348}
-          y={0}
-          width={52}
-          height={750}
-          fill="#fff203"
-        />
+        {wallElements}
       </Layer> 
     )
   }
