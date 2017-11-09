@@ -1,6 +1,7 @@
 import React from 'react'; 
 import Editor from './Editor';
 import ObstacleContainer from './ObstacleContainer';
+import '../stylesheets/challenge.css';
 
 class ChallengeContainer extends React.Component {
 

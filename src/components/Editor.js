@@ -22,7 +22,6 @@ export default class Editor extends React.Component {
 
   function ${this.props.challenge} {
     // your code here
-    return array.sort((a,b) => a-b)
   }`
     })
   }
@@ -57,7 +56,7 @@ export default class Editor extends React.Component {
 
   render() {
     return (
-      <div id="editor-wrapper">
+      <div className="editor-wrapper">
         <AceEditor 
           theme="textmate"
           mode="javascript"

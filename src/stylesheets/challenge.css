@@ -1,0 +1,12 @@
+.challenge-container {
+  display: flex;
+  flex-direction: horizontal; 
+}
+
+.editor-wrapper {
+  flex: 1;
+}
+
+.obstacle-container {
+  flex: 2;
+}

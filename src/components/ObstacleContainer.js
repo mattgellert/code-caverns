@@ -20,9 +20,11 @@ export default class ObstacleContainer extends React.Component {
   render() {
     const obstacle = this.getObstacle(this.props.challenge)
     return (
-      <Stage width={1000} height={800}>
-        {obstacle}
-      </Stage>
+      <div className='obstacle-container'>
+        <Stage width={1000} height={800}>
+          {obstacle}
+        </Stage>
+      </div>
     )
   }
 }; 

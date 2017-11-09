@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import ChallengeContainer from './ChallengeContainer'
+import Cavern from './World/Cavern'
 
 class App extends Component {
+  
   render() {
     return (
       <div>
-        <ChallengeContainer />
+        <Cavern />
       </div>
     );
   }
