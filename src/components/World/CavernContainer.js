@@ -4,6 +4,7 @@ import ChallengeContainer from '../ChallengeContainer';
 import wallData from './wallData';
 import obstructionData from './obstructionData';
 import Cavern from './Cavern'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './CavernContainer.css'
 
 export default class CavernContainer extends React.Component {
@@ -49,7 +50,6 @@ export default class CavernContainer extends React.Component {
     }
     return true
   }
-
 
   startgameLoop = (step) => {
     let updatedDudeX = this.state.dude.x + ((this.rightMoves-this.leftMoves) * step);
@@ -267,11 +267,25 @@ export default class CavernContainer extends React.Component {
     };
   };
 
+  handleChallengeQuit = (e) => {
+    //return to game map
+  }
+
+  handleChallengePass = (e) => {
+    //return to game map and remove obstacle
+  }
+
   render() { //might need to put the entire Stage in a Cavern Container so we can place the ChallengeContainer over the Stage
     return (
       <div className="cavern-container">
-        <Cavern walls={this.state.walls} obstructions={this.state.obstructions} position={this.state.dude} onMove={this.dudeMove}/>
-        {this.state.challengeMode ? <ChallengeContainer /> : null}
+        <ReactCSSTransitionGroup
+          transitionName="cavern">
+          {this.state.challengeMode ? null : <Cavern walls={this.state.walls} obstructions={this.state.obstructions} position={this.state.dude} onMove={this.dudeMove}/>}
+        </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          transitionName="challenge">
+          {this.state.challengeMode ? <ChallengeContainer handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
+        </ReactCSSTransitionGroup>
       </div>
     )
   }

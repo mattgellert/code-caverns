@@ -1,8 +1,9 @@
 import {Stage} from 'react-konva';
-import React from 'react'; 
-import ObstacleSortRocks from './ObstacleSortRocks'; 
+import React from 'react';
+import ObstacleSortRocks from './ObstacleSortRocks';
 
 export default class ObstacleContainer extends React.Component {
+
 
   getObstacle(challengeName) {
     let obstacle;
@@ -17,6 +18,14 @@ export default class ObstacleContainer extends React.Component {
     return obstacle
   }
 
+  onQuit = (e) => {
+    this.props.onQuit();
+  };
+
+  onPass = (e) => {
+    this.props.onPass();
+  };
+
   render() {
     const obstacle = this.getObstacle(this.props.challenge)
     return (
@@ -24,7 +33,8 @@ export default class ObstacleContainer extends React.Component {
         <Stage width={1000} height={800}>
           {obstacle}
         </Stage>
+        
       </div>
     )
   }
-}; 
+};

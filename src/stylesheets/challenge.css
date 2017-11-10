@@ -1,6 +1,6 @@
-.challenge-container {
+.challenge-container-wrapper {
   display: flex;
-  flex-direction: horizontal; 
+  flex-direction: row;
 }
 
 .editor-wrapper {
