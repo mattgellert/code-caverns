@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import Editor from './Editor';
 import ObstacleContainer from './ObstacleContainer';
 import '../stylesheets/challenge.css';
@@ -18,17 +18,17 @@ class ChallengeContainer extends React.Component {
       this.setState({
         attempt: output
       })
-    } 
+    }
   }
 
   render() {
     return (
-      <div className="challenge-container">
-        <Editor challenge={this.state.name} input={this.state.input} expectedOutput={this.state.expectedOutput} handleRun={this.handleRun}/> 
-        <ObstacleContainer challenge={this.state.name} attempt={this.state.attempt}/>
+      <div className="challenge-container-wrapper">
+          <Editor challenge={this.state.name} input={this.state.input} expectedOutput={this.state.expectedOutput} handleRun={this.handleRun}/>
+          <ObstacleContainer challenge={this.state.name} attempt={this.state.attempt}/>
       </div>
     )
   }
-}; 
+};
 
 export default ChallengeContainer;

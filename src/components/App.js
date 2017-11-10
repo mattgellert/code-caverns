@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Cavern from './World/Cavern'
+import CavernContainer from './World/CavernContainer'
 import ChallengeContainer from './ChallengeContainer';
 class App extends Component {
 
   render() {
     return (
       <div>
-        <Cavern />
+        <CavernContainer />
       </div>
     );
   }
