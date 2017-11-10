@@ -140,16 +140,44 @@ class Cavern extends React.Component {
       const wallRight = wall.x + wall.width;
       const wallTop = wall.y;
       const wallBottom = wall.y + wall.height;
-    //if dude collides with wall
-      //move dude to edge of wall
-      // if (dudeLeft > wallLeft && dudeLeft < wallRight && dudeTop > wallTop && dudeBottom < wallBottom) {
+
+
       if (this.leftMoves !== 0) {
         if (dudeLeft > wallLeft && dudeLeft < wallRight && ((dudeTop > wallTop && dudeTop < wallBottom) || (dudeBottom > wallTop && dudeBottom < wallBottom))) {
-          console.log('left collision')
+          //if dude collides with wall
+            //move dude to edge of wall
           updatedDudeX = wall.x + wall.width;
           update = true;
         };
-      }
+      };
+
+      if (this.rightMoves !== 0) {
+        if (dudeRight > wallLeft && dudeRight < wallRight && ((dudeTop > wallTop && dudeTop < wallBottom) || (dudeBottom > wallTop && dudeBottom < wallBottom))) {
+          //if dude collides with wall
+            //move dude to edge of wall
+          updatedDudeX = wall.x - this.state.dude.width;
+          update = true;
+        };
+      };
+
+      if (this.upMoves !== 0) {
+        if (dudeTop > wallTop && dudeTop < wallBottom && ((dudeLeft > wallLeft && dudeLeft < wallRight) || (dudeRight > wallLeft && dudeRight < wallRight))) {
+          //if dude collides with wall
+            //move dude to edge of wall
+          updatedDudeY = wall.y + wall.height;
+          update = true;
+        };
+      };
+
+      if (this.downMoves !== 0) {
+        if (dudeBottom > wallTop && dudeBottom < wallBottom && ((dudeLeft > wallLeft && dudeLeft < wallRight) || (dudeRight > wallLeft && dudeRight < wallRight))) {
+          //if dude collides with wall
+            //move dude to edge of wall
+          updatedDudeY = wall.y - this.state.dude.height;
+          update = true;
+        };
+      };
+
     });
 
     // this.state.obstructions.forEach(obstruction => {
