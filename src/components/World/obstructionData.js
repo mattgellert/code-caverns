@@ -1,11 +1,11 @@
 const obstructionData = [
   {
-    x: 0,
+    x: 100,
     y: 200,
     height: 200,
-    width: 52,
+    width: 50,
     fill: "red"
   }
 ]
 
-export default obstructionData; 
+export default obstructionData;

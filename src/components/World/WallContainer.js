@@ -1,11 +1,12 @@
-import React from 'react'; 
-import {Rect, Layer} from 'react-konva'; 
+import React from 'react';
+import {Rect, Layer} from 'react-konva';
 
 class WallContainer extends React.Component {
+
   render() {
     const wallElements = this.props.walls.map(({x, y, width, height, fill}) => {
       return (
-        <Rect 
+        <Rect
           x={x}
           y={y}
           width={width}
@@ -18,9 +19,9 @@ class WallContainer extends React.Component {
     return (
       <Layer>
         {wallElements}
-      </Layer> 
+      </Layer>
     )
   }
-}; 
+};
 
 export default WallContainer;

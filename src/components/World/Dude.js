@@ -1,5 +1,5 @@
-import React from 'react'; 
-import {Image} from 'react-konva'; 
+import React from 'react';
+import {Image} from 'react-konva';
 
 class Dude extends React.Component {
   state = {
@@ -18,16 +18,16 @@ class Dude extends React.Component {
 
   render() {
     return (
-      <Image 
+      <Image
         x={this.props.position.x}
         y={this.props.position.y}
         image={this.state.image}
         listening={true}
-        height={50}
-        width={50}
+        height={30}
+        width={30}
       />
     )
   }
-}; 
+};
 
 export default Dude;
