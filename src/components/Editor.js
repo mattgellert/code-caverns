@@ -1,6 +1,6 @@
-import React from 'react'; 
+import React from 'react';
 import AceEditor from 'react-ace';
-import 'brace/mode/javascript'; 
+import 'brace/mode/javascript';
 import 'brace/theme/textmate'
 import ErrorCard from './ErrorCard';
 import OutputCard from './OutputCard';
@@ -8,27 +8,14 @@ import OutputCard from './OutputCard';
 export default class Editor extends React.Component {
 
   state = {
-    code: '',
     error: null,
-    output: null
+    output: null,
+    currentCode: this.props.editor.code
   }
 
-  componentDidMount() {
+  handleChange = (input) => { //make sure to send this to APP
     this.setState({
-      code: `/* Example:
-  input: ${this.props.input}
-  output: ${this.props.expectedOutput}
-*/
-
-  function ${this.props.challenge} {
-    // your code here
-  }`
-    })
-  }
-
-  handleChange = (input) => {
-    this.setState({
-      code: input
+      currentCode: input
     });
   }
 
@@ -36,10 +23,10 @@ export default class Editor extends React.Component {
     this.setState({
       error: null
     }, () => {
-      const inputArray = this.props.input.slice();
-      const sortedArray = this.props.expectedOutput; 
+      const inputArray = this.props.editor.input.slice();
+      const sortedArray = this.props.editor.expectedOutput;
       try {
-        const userFunction = eval( `(${this.state.code})` );
+        const userFunction = eval( `(${this.state.currentCode})` );
         const pass = JSON.stringify(userFunction(inputArray)) === JSON.stringify(sortedArray);
         console.log("passed:", pass)
         this.props.handleRun(userFunction(inputArray))
@@ -54,21 +41,31 @@ export default class Editor extends React.Component {
     });
   }
 
+
+  onQuit = (e) => {
+    this.props.onQuit();
+  };
+
+  onPass = (e) => {
+    this.props.onPass();
+  };
+
   render() {
     return (
       <div className="editor-wrapper">
-        <AceEditor 
+        <AceEditor
           theme="textmate"
           mode="javascript"
           onChange={this.handleChange}
           name="editor"
           editorProps={{$blockScrolling: true}}
-          value={this.state.code}
+          value={this.state.currentCode}
         />
         <ErrorCard message={this.state.error} />
         <OutputCard output={this.state.output} />
         <button onClick={this.onRun}>Run</button>
+      
       </div>
     )
   }
-};  
+};

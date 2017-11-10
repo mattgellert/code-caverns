@@ -5,10 +5,10 @@ import ObstacleSortRocks from './ObstacleSortRocks';
 export default class ObstacleContainer extends React.Component {
 
 
-  getObstacle(challengeName) {
+  getObstacle(challengeName) { //add case for each additional obstacle (and import it)
     let obstacle;
     switch (challengeName) {
-      case "sortRocks(array)":
+      case "sortRocks":
         obstacle = <ObstacleSortRocks attempt={this.props.attempt}/>
         break;
       default:
@@ -18,22 +18,14 @@ export default class ObstacleContainer extends React.Component {
     return obstacle
   }
 
-  onQuit = (e) => {
-    this.props.onQuit();
-  };
-
-  onPass = (e) => {
-    this.props.onPass();
-  };
-
   render() {
+
     const obstacle = this.getObstacle(this.props.challenge)
     return (
       <div className='obstacle-container'>
         <Stage width={1000} height={800}>
           {obstacle}
         </Stage>
-        
       </div>
     )
   }

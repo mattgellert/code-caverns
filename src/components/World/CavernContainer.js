@@ -16,8 +16,8 @@ export default class CavernContainer extends React.Component {
       width: 30
     },
     walls: [...wallData],
-    obstructions: [...obstructionData],
-    challengeMode: false
+    challengeMode: false,
+    currentObstructionName: ""
   }
 
   componentDidMount() {
@@ -99,7 +99,9 @@ export default class CavernContainer extends React.Component {
         }
       }, this)
 
-      let updatedObstructions = this.state.obstructions.map(obstruction => {
+
+      //ADD FILTER HERE? (TO REMOVE PASSED OBSTACLES)
+      let updatedObstructions = this.props.obstructions.map(obstruction => {
        return {
          ...obstruction,
          x: obstruction.x - updatedMapX,
@@ -113,24 +115,23 @@ export default class CavernContainer extends React.Component {
         y: updatedDudeY
       };
 
+
+      //callback to update App obstructions
+      this.props.onUpdateObstructions(updatedObstructions);
+
       this.setState({
         dude: {...updatedDude},
-        walls: [ ...updatedWalls ],
-        obstructions: [ ...updatedObstructions ]
-      }, () => {this.checkDudeCollisions(false)})
+        walls: [ ...updatedWalls ]
+      }, () => {this.checkDudeCollisions(false)});
 
       this.leftMoves = 0;
       this.rightMoves = 0;
       this.upMoves = 0;
       this.downMoves = 0;
-    }
-    // } else { //challengeMode TRUE
-    //   this.removeKeyListener()
-    // }
+    };
+  };
 
-  }
-
-  collisionsHelper = (updated, dude, obj, type) => {
+  collisionsHelper = (updated, dude, obj, type, obstructionName) => {
     if (this.leftMoves !== 0) {
       if (dude.left > obj.left && dude.left < obj.right && ((dude.top > obj.top && dude.top < obj.bottom) || (dude.bottom > obj.top && dude.bottom < obj.bottom))) {
         //if dude collides with wall
@@ -171,7 +172,8 @@ export default class CavernContainer extends React.Component {
       dudeX: updated.dudeX,
       dudeY: updated.dudeY,
       update: updated.update,
-      type: type
+      type: type,
+      obstructionName: obstructionName
     }
   }
 
@@ -203,7 +205,7 @@ export default class CavernContainer extends React.Component {
         height: wall.height
       }
 
-      updated = this.collisionsHelper(updated, dude, wallObj, "wall")
+      updated = this.collisionsHelper(updated, dude, wallObj, "wall", null)
     });
 
     if (!updated.update) {
@@ -211,9 +213,9 @@ export default class CavernContainer extends React.Component {
        dudeX: this.state.dude.x,
        dudeY: this.state.dude.y,
        update: false
-     }
-     this.state.obstructions.forEach(obstruction => {
+     };
 
+     this.props.obstructions.forEach(obstruction => {
        const obstr = {
          left: obstruction.x,
          right: obstruction.x + obstruction.width,
@@ -225,14 +227,15 @@ export default class CavernContainer extends React.Component {
          height: obstruction.height
        };
 
-       updated = this.collisionsHelper(updated, dude, obstr, "obstruction")
+       updated = this.collisionsHelper(updated, dude, obstr, "obstruction", obstruction.name)
      });
    };
 
     if (updated.type === "obstruction" && updated.update === true) {
       console.log("initiate a challenge")
       this.setState({
-        challengeMode: true
+        challengeMode: true,
+        currentObstructionName: updated.obstructionName
       })
     };
 
@@ -269,10 +272,18 @@ export default class CavernContainer extends React.Component {
 
   handleChallengeQuit = (e) => {
     //return to game map
+    this.setState({
+      challengeMode: false
+    });
+    //look out for character in wall
   }
 
-  handleChallengePass = (e) => {
+  handleChallengePass = (obstructionName) => {
     //return to game map and remove obstacle
+    this.setState({
+      challengeMode: false
+    });
+    this.props.onPassObstruction(obstructionName);
   }
 
   render() { //might need to put the entire Stage in a Cavern Container so we can place the ChallengeContainer over the Stage
@@ -280,11 +291,11 @@ export default class CavernContainer extends React.Component {
       <div className="cavern-container">
         <ReactCSSTransitionGroup
           transitionName="cavern">
-          {this.state.challengeMode ? null : <Cavern walls={this.state.walls} obstructions={this.state.obstructions} position={this.state.dude} onMove={this.dudeMove}/>}
+          {this.state.challengeMode ? null : <Cavern walls={this.state.walls} obstructions={this.props.obstructions} position={this.state.dude} onMove={this.dudeMove}/>}
         </ReactCSSTransitionGroup>
         <ReactCSSTransitionGroup
           transitionName="challenge">
-          {this.state.challengeMode ? <ChallengeContainer handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
+          {this.state.challengeMode ? <ChallengeContainer name={this.state.currentObstructionName} editors={this.props.editors} handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
         </ReactCSSTransitionGroup>
       </div>
     )
