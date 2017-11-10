@@ -1,11 +1,11 @@
-import React from 'react'; 
-import {Layer, Rect} from 'react-konva'; 
+import React from 'react';
+import {Layer, Rect} from 'react-konva';
 
 class ObstructionContainer extends React.Component {
   render() {
     const obstructionElements = this.props.obstructions.map( ({x, y, width, height, fill}) => {
       return (
-        <Rect 
+        <Rect
           x={x}
           y={y}
           width={width}
@@ -21,6 +21,6 @@ class ObstructionContainer extends React.Component {
       </Layer>
     )
   }
-}; 
+};
 
 export default ObstructionContainer;

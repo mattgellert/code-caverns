@@ -4,6 +4,7 @@ import ChallengeContainer from '../ChallengeContainer';
 import wallData from './wallData';
 import obstructionData from './obstructionData';
 import Cavern from './Cavern'
+import './CavernContainer.css'
 
 export default class CavernContainer extends React.Component {
   state = {
@@ -26,29 +27,25 @@ export default class CavernContainer extends React.Component {
     this.downMoves = 0;
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.dude !== this.state.dude;
-  }
-
   attachKeyListener = () => {
-    document.addEventListener('keydown', (e) => {
+    this.listener = (e) => {
       e.preventDefault();
       this.dudeMove(e.which);
       this.startgameLoop(10);
-    })
+    }
+    document.addEventListener('keydown', this.listener)
   }
 
   removeKeyListener = () => {
-    document.removeEventListener('keydown', (e) => {
-      e.preventDefault();
-      this.dudeMove(e.which);
-      this.startgameLoop(10);
-    })
+    console.log('remove key listener')
+    document.removeEventListener('keydown', this.listener)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.challengeMode === true && nextState.challengeMode === false) {
       this.attachKeyListener();
+    } else if (this.state.challengeMode === false && nextState.challengeMode === true) {
+      this.removeKeyListener();
     }
     return true
   }
@@ -126,9 +123,10 @@ export default class CavernContainer extends React.Component {
       this.rightMoves = 0;
       this.upMoves = 0;
       this.downMoves = 0;
-    } else { //challengeMode TRUE
-      this.removeKeyListener()
     }
+    // } else { //challengeMode TRUE
+    //   this.removeKeyListener()
+    // }
 
   }
 
