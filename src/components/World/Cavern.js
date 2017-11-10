@@ -77,30 +77,44 @@ class Cavern extends React.Component {
        y: obstruction.y - ((this.downMoves-this.upMoves) * step)
      };
    }, this);
-
+   let notAgainstBoundary = true
     if (!this.state.challengeMode) {
-
       if (this.state.dude.x < 200) { //if against or beyond the left bound
         // updatedDudeX = 200 //move dude to left bount
+
         if (this.rightMoves === 0) {
           updatedDudeX = this.state.dude.x //move dude to left bount
+          console.log('left bound')
+          notAgainstBoundary = false
         };
-      } else if (this.state.dude.x > 600) { //if against or beyond the right bound
+      }
+      if (this.state.dude.x > 600) { //if against or beyond the right bound
         // updatedDudeX = 600 //move dude to right bound
         if (this.leftMoves === 0) {
           updatedDudeX = this.state.dude.x //move dude to right bound
+          console.log('right bound')
+          notAgainstBoundary = false
         };
-      } else if (this.state.dude.y < 150) { //if against or beyond the upper bound
+      }
+      if (this.state.dude.y < 150) { //if against or beyond the upper bound
         if (this.downMoves === 0) {
           updatedDudeY = this.state.dude.y //move dude to upper bound
+          console.log('upper bound')
+          notAgainstBoundary = false
         };
-      } else if (this.state.dude.y > 450) { //if against or beyond the lower bound
+      }
+      if (this.state.dude.y > 450) { //if against or beyond the lower bound
         if (this.upMoves === 0) {
           updatedDudeY = this.state.dude.y //move dude to lower bound
+          console.log('lower bound')
+          notAgainstBoundary = false
         };
-      } else { //if not against any boundary map doesn't move
+      }
+      if (notAgainstBoundary){ //if not against any boundary map doesn't move
         updatedWalls = this.state.walls;
         updatedObstructions = this.state.obstructions;
+        console.log('no bound')
+        //OR IN A COLLISION
       };
 
       const updatedDude = {
@@ -113,7 +127,7 @@ class Cavern extends React.Component {
         dude: {...updatedDude},
         walls: [ ...updatedWalls ],
         obstructions: [ ...updatedObstructions ]
-      }, () => {this.checkDudeCollisions()})
+      }, () => {this.checkDudeCollisions(false)})
 
       this.leftMoves = 0;
       this.rightMoves = 0;
@@ -125,7 +139,7 @@ class Cavern extends React.Component {
 
   }
 
-  checkDudeCollisions = () => {
+  checkDudeCollisions = (boundaryCheck) => {
     let updatedDudeX = this.state.dude.x;
     let updatedDudeY = this.state.dude.y;
     let update = false;
@@ -188,7 +202,7 @@ class Cavern extends React.Component {
     // })
     //if dude collides with obstacle
       //set challengeMode to TRUE
-    if (update) {
+    if (update && !boundaryCheck) {
       // debugger
       this.setState({
         dude: {
@@ -198,7 +212,7 @@ class Cavern extends React.Component {
         }
       });
     };
-
+    return update
   }
 
   dudeMove = (dir) => {
