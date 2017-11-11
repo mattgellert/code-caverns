@@ -12,7 +12,8 @@ export default class CavernContainer extends React.Component {
       x: 400,
       y: 300,
       height: 30,
-      width: 30
+      width: 30,
+      direction: "idle"
     },
     walls: [...wallData],
     challengeMode: false,
@@ -47,26 +48,38 @@ export default class CavernContainer extends React.Component {
     document.removeEventListener('keyup', this.keyupListener);
   };
 
-  dudeStartAnimation = (dir) => {
-    switch (dir) {
+  dudeStartAnimation = (key) => {
+    let direction;
+    switch (key) {
       case 37:
-        this.leftMoves++;
+        direction = "left";
         break;
       case 38:
-        this.upMoves++;
+        direction = "up";
         break;
       case 39:
-        this.rightMoves++;
+        direction = "right";
         break;
       case 40:
-        this.downMoves++;
+        direction = "down";
         break;
       default: break;
     };
+    this.setState({
+      dude: {
+        ...this.state.dude,
+        direction: direction
+      }
+    });
   };
 
   dudeEndAnimation = () => {
-
+    this.setState({
+      dude: {
+        ...this.state.dude,
+        direction: "idle"
+      }
+    });
   };
 
   shouldComponentUpdate(nextProps, nextState) {

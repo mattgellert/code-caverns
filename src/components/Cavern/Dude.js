@@ -4,7 +4,7 @@ import {Image} from 'react-konva';
 class Dude extends React.Component {
   state = {
     image: null
-  }
+  };
 
   componentDidMount() {
     const image = new window.Image();
@@ -14,9 +14,12 @@ class Dude extends React.Component {
         image: image
       });
     };
-  }
+  };
 
   render() {
+    // return (
+    //
+    // )
     return (
       <Image
         x={this.props.position.x}
@@ -27,7 +30,7 @@ class Dude extends React.Component {
         width={30}
       />
     )
-  }
+  };
 };
 
 export default Dude;
