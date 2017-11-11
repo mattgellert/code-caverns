@@ -20,31 +20,60 @@ export default class CavernContainer extends React.Component {
   };
 
   componentDidMount() {
-    this.attachKeyListener();
+    this.attachKeyListeners();
     this.leftMoves = 0;
     this.rightMoves = 0;
     this.upMoves = 0;
     this.downMoves = 0;
   };
 
-  attachKeyListener = () => {
-    this.listener = (e) => {
+  attachKeyListeners = () => {
+    this.keydownListener = (e) => {
       e.preventDefault();
       this.dudeMove(e.which);
+      this.dudeStartAnimation(e.which);
       this.startgameLoop(10);
     };
-    document.addEventListener('keydown', this.listener);
+    this.keyupListener = (e) => {
+      e.preventDefault();
+      this.dudeEndAnimation();
+    }
+    document.addEventListener('keydown', this.keydownListener);
+    document.addEventListener('keyup', this.keyupListener);
   };
 
-  removeKeyListener = () => {
-    document.removeEventListener('keydown', this.listener);
+  removeKeyListeners = () => {
+    document.removeEventListener('keydown', this.keydownListener);
+    document.removeEventListener('keyup', this.keyupListener);
+  };
+
+  dudeStartAnimation = (dir) => {
+    switch (dir) {
+      case 37:
+        this.leftMoves++;
+        break;
+      case 38:
+        this.upMoves++;
+        break;
+      case 39:
+        this.rightMoves++;
+        break;
+      case 40:
+        this.downMoves++;
+        break;
+      default: break;
+    };
+  };
+
+  dudeEndAnimation = () => {
+
   };
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.challengeMode === true && nextState.challengeMode === false) {
-      this.attachKeyListener();
+      this.attachKeyListeners();
     } else if (this.state.challengeMode === false && nextState.challengeMode === true) {
-      this.removeKeyListener();
+      this.removeKeyListeners();
     };
     return true;
   };
