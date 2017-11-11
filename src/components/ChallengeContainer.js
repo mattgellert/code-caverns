@@ -27,11 +27,12 @@ export default class ChallengeContainer extends React.Component {
   );
 
 
+
   render() {
     return (
       <div className="challenge-container-wrapper">
-        <Editor editor={this.state.currentEditor} onQuit={this.props.handleQuit} onPass={this.props.handlePass} handleRun={this.handleRun}/>
-        <ObstacleContainer challenge={this.props.name} attempt={this.state.currentAttempt}/>
+        <Editor editor={this.state.currentEditor} onQuit={this.props.handleQuit} onPass={this.props.handlePass} handleRun={this.handleRun} />
+        <ObstacleContainer description={this.state.currentEditor.description} challenge={this.props.name} attempt={this.state.currentAttempt}/>
       </div>
     )
   };

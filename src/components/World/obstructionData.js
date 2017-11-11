@@ -1,7 +1,7 @@
 const obstructionData = [
   {
     name: 'sortRocks',
-    passed: false,
+    pass: false,
     x: 100,
     y: 200,
     height: 200,

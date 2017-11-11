@@ -11,7 +11,9 @@ const EditorData = [
   function sortRocks(arr) {
     // your code here
   }`,
-      attempt: [9,6,3,4,5,1,0,2,8,7,10]
+      attempt: [9,6,3,4,5,1,0,2,8,7,10],
+      pass: false,
+      description: "You've encountered a large boulder blocking the path, but you notice a pile of rocks and realize if you can sort these from smallest to largest, you can climb over and continue."
     }
 ]
 

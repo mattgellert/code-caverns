@@ -29,6 +29,7 @@ export default class Editor extends React.Component {
         const userFunction = eval( `(${this.state.currentCode})` );
         const pass = JSON.stringify(userFunction(inputArray)) === JSON.stringify(sortedArray);
         console.log("passed:", pass)
+        pass ? this.props.onPass(this.props.editor.name) : null;
         this.props.handleRun(userFunction(inputArray))
         this.setState({
           output: JSON.stringify(userFunction(inputArray))
@@ -42,13 +43,10 @@ export default class Editor extends React.Component {
   }
 
 
-  onQuit = (e) => {
-    this.props.onQuit();
+  onQuit = () => {
+    this.props.onQuit(this.props.editor.name, this.state.currentCode, this.props.editor.pass);
   };
 
-  onPass = (e) => {
-    this.props.onPass();
-  };
 
   render() {
     return (
@@ -64,7 +62,7 @@ export default class Editor extends React.Component {
         <ErrorCard message={this.state.error} />
         <OutputCard output={this.state.output} />
         <button onClick={this.onRun}>Run</button>
-      
+        {this.props.editor.pass ? <button onClick={this.onQuit}>Continue!</button> : <button onClick={this.onQuit}>Quit</button>}
       </div>
     )
   }

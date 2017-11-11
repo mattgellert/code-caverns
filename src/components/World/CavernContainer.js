@@ -21,6 +21,7 @@ export default class CavernContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log("Mounting")
     this.attachKeyListener();
     this.leftMoves = 0;
     this.rightMoves = 0;
@@ -54,8 +55,8 @@ export default class CavernContainer extends React.Component {
   startgameLoop = (step) => {
     let updatedDudeX = this.state.dude.x + ((this.rightMoves-this.leftMoves) * step);
     let updatedDudeY = this.state.dude.y + ((this.downMoves-this.upMoves) * step);
-   let updatedMapX = 0;
-   let updatedMapY = 0;
+    let updatedMapX = 0;
+    let updatedMapY = 0;
 
 
     if (!this.state.challengeMode) {
@@ -100,8 +101,9 @@ export default class CavernContainer extends React.Component {
       }, this)
 
 
-      //ADD FILTER HERE? (TO REMOVE PASSED OBSTACLES)
-      let updatedObstructions = this.props.obstructions.map(obstruction => {
+      let updatedObstructions = this.props.obstructions.filter(obstruction => {
+        return !obstruction.pass
+      }, this).map(obstruction => {
        return {
          ...obstruction,
          x: obstruction.x - updatedMapX,
@@ -270,21 +272,24 @@ export default class CavernContainer extends React.Component {
     };
   };
 
-  handleChallengeQuit = (e) => {
+  handleChallengeQuit = (editorName, code, pass) => {
     //return to game map
     this.setState({
       challengeMode: false
     });
+    this.props.getCode(editorName, code, pass);
     //look out for character in wall
+    // var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
+    // document.dispatchEvent(e);
+    console.log("handleChallengeQuit", this)
   }
 
   handleChallengePass = (obstructionName) => {
     //return to game map and remove obstacle
-    this.setState({
-      challengeMode: false
-    });
     this.props.onPassObstruction(obstructionName);
   }
+
+
 
   render() { //might need to put the entire Stage in a Cavern Container so we can place the ChallengeContainer over the Stage
     return (

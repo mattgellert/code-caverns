@@ -9,7 +9,7 @@ export default class ObstacleContainer extends React.Component {
     let obstacle;
     switch (challengeName) {
       case "sortRocks":
-        obstacle = <ObstacleSortRocks attempt={this.props.attempt}/>
+        obstacle = <ObstacleSortRocks description={this.props.description} attempt={this.props.attempt}/>
         break;
       default:
         console.log('default obstacle')
@@ -23,7 +23,7 @@ export default class ObstacleContainer extends React.Component {
     const obstacle = this.getObstacle(this.props.challenge)
     return (
       <div className='obstacle-container'>
-        <Stage width={1000} height={800}>
+        <Stage width={window.innerWidth - 600} height={800}>
           {obstacle}
         </Stage>
       </div>
