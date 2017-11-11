@@ -10,41 +10,41 @@ export default class Editor extends React.Component {
   state = {
     error: null,
     output: null,
-    currentCode: this.props.editor.code
-  }
+    currentCode: this.props.challenge.editor.code
+  };
 
-  handleChange = (input) => { //make sure to send this to APP
+  handleChange = (input) => { 
     this.setState({
       currentCode: input
     });
-  }
+  };
 
   onRun = () => {
     this.setState({
       error: null
     }, () => {
-      const inputArray = this.props.editor.input.slice();
-      const sortedArray = this.props.editor.expectedOutput;
+      const inputArray = this.props.challenge.editor.input.slice();
+      const sortedArray = this.props.challenge.editor.expectedOutput;
       try {
         const userFunction = eval( `(${this.state.currentCode})` );
         const pass = JSON.stringify(userFunction(inputArray)) === JSON.stringify(sortedArray);
-        console.log("passed:", pass)
-        pass ? this.props.onPass(this.props.editor.name) : null;
-        this.props.handleRun(userFunction(inputArray))
+        console.log("passed:", pass);
+        pass ? this.props.onPass(this.props.challenge.name) : null;
+        this.props.handleRun(userFunction(inputArray));
         this.setState({
           output: JSON.stringify(userFunction(inputArray))
-        })
+        });
       } catch(e) {
         this.setState({
           error: `${e.name}: ${e.message}`
-        })
-      }
+        });
+      };
     });
-  }
+  };
 
 
   onQuit = () => {
-    this.props.onQuit(this.props.editor.name, this.state.currentCode, this.props.editor.pass);
+    this.props.onQuit(this.props.challenge.name, this.state.currentCode, this.props.challenge.pass);
   };
 
 
@@ -62,8 +62,8 @@ export default class Editor extends React.Component {
         <ErrorCard message={this.state.error} />
         <OutputCard output={this.state.output} />
         <button onClick={this.onRun}>Run</button>
-        {this.props.editor.pass ? <button onClick={this.onQuit}>Continue!</button> : <button onClick={this.onQuit}>Quit</button>}
+        {this.props.challenge.pass ? <button onClick={this.onQuit}>Continue!</button> : <button onClick={this.onQuit}>Quit</button>}
       </div>
-    )
-  }
+    );
+  };
 };

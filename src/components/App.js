@@ -1,63 +1,50 @@
 import React, { Component } from 'react';
-import CavernContainer from './World/CavernContainer'
-import ChallengeContainer from './ChallengeContainer';
-import obstructionData from './World/obstructionData';
-import EditorData from './EditorData';
+import CavernContainer from './Cavern/CavernContainer.js'
+import ChallengeContainer from './Challenge/ChallengeContainer.js';
+import ChallengeData from './Challenge/ChallengeData.js';
 
-class App extends Component {
+export default class App extends Component {
 
   state = {
-    editors: [...EditorData],
-    obstructions: [...obstructionData],
-  }
+    challenges: [...ChallengeData]
+  };
 
-  handleUpdateObstructions = (updatedObstructions) => {
+  handleUpdateChallenges = (updatedChallenges) => {
     this.setState({
-      obstructions: [...updatedObstructions]
-    })
-  }
-
-  handlePassObstruction = (obstructionName) => {
-    const updatedObstructions = this.state.obstructions.map(obstruction => {
-      if (obstruction.name === obstructionName) {
-        obstruction.pass = true;
-      }
-      return obstruction;
+      challenges: [...updatedChallenges]
     });
-    const updatedEditors = this.state.editors.map(editor => {
-      if (editor.name === obstructionName) {
-        editor.pass = true;
+  };
+
+  handlePassChallenge = (challengeName) => {
+    const updatedChallenges = this.state.challenges.map(challenge => {
+      if (challenge.name === challengeName) {
+        challenge.pass = true;
       };
-      return editor;
+      return challenge;
     });
     this.setState({
-      editors: [...updatedEditors],
-      obstructions: [...updatedObstructions]
+      challenges: [...updatedChallenges]
     });
-  }
+  };
 
-  handleGetCode = (editorName, code, pass) => {
-    const updatedEditors = this.state.editors.map(editor => {
-      if (editor.name === editorName) {
-        editor.code = code;
-        editor.pass = pass;
+  handleGetCode = (challengeName, code, pass) => {
+    const updatedChallenges = this.state.challenges.map(challenge => {
+      if (challenge.name === challengeName) {
+        challenge.editor.code = code;
+        challenge.pass = pass;
       };
-      return editor;
+      return challenge;
     });
     this.setState({
-      editors: [...updatedEditors]
-    })
-    
-  }
-
+      challenges: [...updatedChallenges]
+    });
+  };
 
   render() {
     return (
       <div>
-        <CavernContainer getCode={this.handleGetCode} editors={this.state.editors} obstructions={this.state.obstructions} onUpdateObstructions={this.handleUpdateObstructions} onPassObstruction={this.handlePassObstruction}/>
+        <CavernContainer getCode={this.handleGetCode} challenges={this.state.challenges} onUpdateChallenges={this.handleUpdateChallenges} onPassChallenge={this.handlePassChallenge}/>
       </div>
     );
-  }
-}
-
-export default App;
+  };
+};

@@ -1,9 +1,10 @@
 import React from 'react';
 import {Layer, Rect} from 'react-konva';
 
-class ObstructionContainer extends React.Component {
+export default class CavernObstructionContainer extends React.Component {
   render() {
-    const obstructionElements = this.props.obstructions.map( ({x, y, width, height, fill}) => {
+    const obstructionElements = this.props.challenges.map( ({obstruction}) => {
+      const {x, y, width, height, fill} = obstruction;
       return (
         <Rect
           x={x}
@@ -12,15 +13,13 @@ class ObstructionContainer extends React.Component {
           height={height}
           fill={fill}
         />
-      )
+      );
     });
 
     return (
       <Layer>
         {obstructionElements}
       </Layer>
-    )
-  }
+    );
+  };
 };
-
-export default ObstructionContainer;

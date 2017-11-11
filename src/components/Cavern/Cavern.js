@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {Stage, Layer} from 'react-konva';
-import Dude from './Dude';
-import WallContainer from './WallContainer';
-import ObstructionContainer from './ObstructionContainer';
+import Dude from './Dude.js';
+import WallContainer from './WallContainer.js';
+import CavernObstructionContainer from './CavernObstructionContainer.js';
 import './Cavern.css'
 
 export default class Cavern extends Component {
@@ -13,7 +13,7 @@ export default class Cavern extends Component {
       <div className="cavern">
         <Stage width={800} height={600}>
           <WallContainer walls={this.props.walls} />
-          <ObstructionContainer obstructions={this.props.obstructions} />
+          <CavernObstructionContainer challenges={this.props.challenges} />
           <Layer>
             <Dude position={this.props.position} onMove={this.props.onMove} />
           </Layer>

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Rect, Layer} from 'react-konva';
 
 
-const ObstacleSortRocks = (props) => {
+const ObstructionSortRocks = (props) => {
 
     const rocks = props.attempt.map((rock, idx) => (
       <Rect key={idx} x={((idx + 1) * 60)} y={200} width={50} height={(rock + 1) * -10} fill="#000000" />
@@ -45,4 +45,4 @@ const ObstacleSortRocks = (props) => {
     );
 };
 
-export default ObstacleSortRocks;
+export default ObstructionSortRocks;
