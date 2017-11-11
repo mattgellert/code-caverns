@@ -1,0 +1,5 @@
+1-8: idle 
+9-16: right
+17-24: left 
+25-32: forward
+33-40: back
