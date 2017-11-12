@@ -11,8 +11,8 @@ export default class CavernContainer extends React.Component {
     dude: {
       x: 400,
       y: 300,
-      height: 30,
-      width: 30,
+      height: 64,
+      width: 64,
       direction: "idle"
     },
     walls: [...wallData],
@@ -30,7 +30,7 @@ export default class CavernContainer extends React.Component {
         image: image
       });
     };
-    image.src = 'https://i.imgur.com/hbdw5dS.png';
+    image.src = 'https://i.imgur.com/JA42ezn.png';
     this.attachKeyListeners();
     this.leftMoves = 0;
     this.rightMoves = 0;

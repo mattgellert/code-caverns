@@ -17,9 +17,9 @@ export default class App extends Component {
     });
   };
 
-  // newGame = () => {
-  //
-  // };
+  newGame = () => {
+
+  };
   //
   // oldGame = () => {
   //
