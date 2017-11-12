@@ -8,15 +8,15 @@ import './Cavern.css'
 export default class Cavern extends Component {
 
   state = {
-    shadowImage: null
+    backgroundImage: null
   }
 
   componentDidMount() {
-    const shadowImage = new window.Image();
-    shadowImage.src = 'https://i.imgur.com/2tC455y.png';
-    shadowImage.onload = () => {
+    const backgroundImage = new window.Image();
+    backgroundImage.src = 'https://i.imgur.com/2b1AT0M.png';
+    backgroundImage.onload = () => {
       this.setState({
-        shadowImage: shadowImage
+        backgroundImage: backgroundImage
       });
     };
   }
@@ -27,11 +27,9 @@ export default class Cavern extends Component {
         <Stage width={800} height={600} visible={true}>
           <Layer>
             <Rect
-              offsetX={-960}
-              offsetY={-1280}
               width={1920}
               height={2560}
-              fillPatternImage={this.state.shadowImage}
+              fillPatternImage={this.state.backgroundImage}
             />
           </Layer>
           <WallContainer walls={this.props.walls} />
