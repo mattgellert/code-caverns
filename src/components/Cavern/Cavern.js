@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Stage, Layer} from 'react-konva';
+import {Stage, Layer, Rect, Shape} from 'react-konva';
 import Dude from './Dude.js';
 import WallContainer from './WallContainer.js';
 import CavernObstructionContainer from './CavernObstructionContainer.js';
@@ -7,11 +7,33 @@ import './Cavern.css'
 
 export default class Cavern extends Component {
 
+  state = {
+    shadowImage: null
+  }
 
-  render() {
+  componentDidMount() {
+    const shadowImage = new window.Image();
+    shadowImage.src = 'https://i.imgur.com/2tC455y.png';
+    shadowImage.onload = () => {
+      this.setState({
+        shadowImage: shadowImage
+      });
+    };
+  }
+
+  render() { //STILL IN PROGRESS
     return(
       <div className="cavern">
-        <Stage width={800} height={600}>
+        <Stage width={800} height={600} visible={true}>
+          <Layer>
+            <Rect
+              offsetX={-960}
+              offsetY={-1280}
+              width={1920}
+              height={2560}
+              fillPatternImage={this.state.shadowImage}
+            />
+          </Layer>
           <WallContainer walls={this.props.walls} />
           <CavernObstructionContainer challenges={this.props.challenges} />
           <Layer>
@@ -22,3 +44,5 @@ export default class Cavern extends Component {
     )
   }
 }
+
+// <Rect width={800} height={600} fill='#583b87'/>
