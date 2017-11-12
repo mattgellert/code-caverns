@@ -17,15 +17,31 @@ export default class CavernContainer extends React.Component {
     },
     walls: [...wallData],
     challengeMode: false,
-    currentChallengeName: ""
+    currentChallengeName: "",
+    sprite: null,
+    image: null
   };
 
   componentDidMount() {
+    const image = new window.Image();
+
+    image.onload = () => {
+      this.setState({
+        image: image
+      });
+    };
+    image.src = 'https://i.imgur.com/hbdw5dS.png';
     this.attachKeyListeners();
     this.leftMoves = 0;
     this.rightMoves = 0;
     this.upMoves = 0;
     this.downMoves = 0;
+  };
+
+  getSpriteRef = (sprite) => {
+    this.setState({
+      sprite: sprite
+    }, () => {this.state.sprite.start()});
   };
 
   attachKeyListeners = () => {
@@ -63,7 +79,9 @@ export default class CavernContainer extends React.Component {
       case 40:
         direction = "down";
         break;
-      default: break;
+      default:
+        direction = "idle";
+        break;
     };
     this.setState({
       dude: {
@@ -85,8 +103,10 @@ export default class CavernContainer extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.challengeMode === true && nextState.challengeMode === false) {
       this.attachKeyListeners();
+      this.state.sprite.start();
     } else if (this.state.challengeMode === false && nextState.challengeMode === true) {
       this.removeKeyListeners();
+      this.state.sprite.stop();
     };
     return true;
   };
@@ -333,7 +353,7 @@ export default class CavernContainer extends React.Component {
       <div className="cavern-container">
         <ReactCSSTransitionGroup
           transitionName="cavern">
-          {this.state.challengeMode ? null : <Cavern walls={this.state.walls} challenges={this.props.challenges} position={this.state.dude} onMove={this.dudeMove}/>}
+          {this.state.challengeMode ? null : <Cavern walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
         </ReactCSSTransitionGroup>
         <ReactCSSTransitionGroup
           transitionName="challenge">

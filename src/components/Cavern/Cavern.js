@@ -15,7 +15,7 @@ export default class Cavern extends Component {
           <WallContainer walls={this.props.walls} />
           <CavernObstructionContainer challenges={this.props.challenges} />
           <Layer>
-            <Dude position={this.props.position} onMove={this.props.onMove} />
+            <Dude dude={this.props.dude} image={this.props.image} onMove={this.props.onMove} onSpriteRef={this.props.handleSpriteRef}/>
           </Layer>
         </Stage>
       </div>

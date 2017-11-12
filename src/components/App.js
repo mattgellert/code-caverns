@@ -41,7 +41,7 @@ export default class App extends Component {
   handleUpdateChallenges = (updatedChallenges) => {
     this.setState({
       challenges: [...updatedChallenges]
-    }, () => {this.postChallenges()});
+    });
   };
 
   handlePassChallenge = (challengeName) => {
@@ -53,7 +53,7 @@ export default class App extends Component {
     });
     this.setState({
       challenges: [...updatedChallenges]
-    }, () => {this.postChallenges()});
+    });
   };
 
   handleGetCode = (challengeName, code, pass) => {
@@ -63,7 +63,7 @@ export default class App extends Component {
         challenge.pass = pass;
       };
       return challenge;
-    }, () => {this.postChallenges()});
+    });
     this.setState({
       challenges: [...updatedChallenges]
     });
