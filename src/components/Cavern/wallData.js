@@ -180,14 +180,7 @@ const wallData = [
   {
     x: -1100,
     y: -200, 
-    height: 375,
-    width: 50,
-    fill: '#000'
-  },
-  {
-    x: -1100,
-    y: 375, 
-    height: 375,
+    height: 950,
     width: 50,
     fill: '#000'
   }

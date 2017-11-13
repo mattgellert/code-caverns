@@ -20,8 +20,8 @@ const ChallengeData = [
       x: 100,
       y: 200,
       height: 200,
-      width: 122,
-      imageURL: "https://i.imgur.com/6Q6aT78.png"
+      width: 91,
+      imageURL: "https://i.imgur.com/p0mQlyC.png"
     }
   },
 
@@ -57,6 +57,38 @@ function igniteBomb(str) {
       height: 150,
       width: 87,
       imageURL: "https://i.imgur.com/fUzvyAf.png"
+    }
+  },
+
+  {
+    name: 'circleOfStones',
+    description: 'You encounter a large circle of stones embedded with gems. You notice that while most of the stones contain diamonds, two of the stones positioned directly opposite each other in the circle contain emeralds. One of the stones containing an emerald is emitting a light. You wonder what will happen if you can direct the light at the other emerald, directly across the cirlce.',
+    pass: false, 
+    editor: {
+      input: {
+        n: [0,1,2,3,4,5,6,7,8,9,10,11],
+        firstNumber: 10
+      },
+      expectedOutput: 4,
+      code: `/*
+  Consider n stones numbered 0 to n-1 arranged in a circle with equal distance between each of the stones. Given n and a firstNumber, write a function that will return the number of the stone in the radially opposite position of the firstNumber stone. 
+  
+  Example: 
+    input: n = 10, firstNumber = 2 
+    expectedOutput = 7
+*/
+
+function findOppositeEmerald(n, firstNumber) {
+  // your code here 
+}`, 
+      attempt: null
+    },
+    obstruction: {
+      x: -900,
+      y: 100,
+      height: 347,
+      width: 354,
+      imageURL: 'https://i.imgur.com/yodP8As.png'
     }
   }
 ]

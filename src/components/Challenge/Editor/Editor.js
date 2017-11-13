@@ -23,22 +23,42 @@ export default class Editor extends React.Component {
     this.setState({
       error: null
     }, () => {
-      const inputArray = this.props.challenge.editor.input.slice();
-      const sortedArray = this.props.challenge.editor.expectedOutput;
-      try {
-        const userFunction = eval( `(${this.state.currentCode})` );
-        const pass = JSON.stringify(userFunction(inputArray)) === JSON.stringify(sortedArray);
-        console.log("passed:", pass);
-        pass ? this.props.onPass(this.props.challenge.name) : null;
-        this.props.handleRun(userFunction(inputArray));
-        this.setState({
-          output: JSON.stringify(userFunction(inputArray))
-        });
-      } catch(e) {
-        this.setState({
-          error: `${e.name}: ${e.message}`
-        });
-      };
+  
+        
+        try {
+          if (this.props.challenge.name === 'circleOfStones') {
+            const inputN = this.props.challenge.editor.input.n;
+            const inputFirstNumber = this.props.challenge.editor.input.firstNumber
+            const expectedNum = this.props.challenge.editor.expectedOutput;
+            const userFunction = eval( `(${this.state.currentCode})` );
+            const pass = userFunction(inputN, inputFirstNumber) === expectedNum;
+
+            pass ? this.props.onPass(this.props.challenge.name) : null;
+            this.props.handleRun( userFunction(inputN, inputFirstNumber) );
+
+            this.setState({
+              output: JSON.stringify( userFunction(inputN, inputFirstNumber) )
+            });
+
+          } else {
+            const inputArray = this.props.challenge.editor.input.slice();
+            const sortedArray = this.props.challenge.editor.expectedOutput;
+            const userFunction = eval( `(${this.state.currentCode})` );
+            const pass = JSON.stringify(userFunction(inputArray)) === JSON.stringify(sortedArray);
+
+            pass ? this.props.onPass(this.props.challenge.name) : null;
+            this.props.handleRun(userFunction(inputArray));
+
+            this.setState({
+              output: JSON.stringify(userFunction(inputArray))
+            });
+          }
+
+        } catch(e) {
+          this.setState({
+            error: `${e.name}: ${e.message}`
+          });
+        };
     });
   };
 

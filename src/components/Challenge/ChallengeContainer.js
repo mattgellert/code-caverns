@@ -15,7 +15,7 @@ export default class ChallengeContainer extends React.Component {
   };
 
   handleRun = (output) => {
-    if (Array.isArray(output)) {
+    if (Array.isArray(output) || typeof(output) === 'number') {
       this.setState({
         currentAttempt: output
       });
