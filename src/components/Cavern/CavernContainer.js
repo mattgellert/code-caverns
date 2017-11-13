@@ -257,7 +257,7 @@ export default class CavernContainer extends React.Component {
      };
 
      this.props.challenges.forEach(challenge => {
-       const obstr = {
+      const obstr = {
          left: challenge.obstruction.x,
          right: challenge.obstruction.x + challenge.obstruction.width,
          top: challenge.obstruction.y,
@@ -267,8 +267,9 @@ export default class CavernContainer extends React.Component {
          width: challenge.obstruction.width,
          height: challenge.obstruction.height
        };
-
-       updated = this.collisionsHelper(updated, dude, obstr, "obstruction", challenge.name);
+        if (!updated.update) {
+          updated = this.collisionsHelper(updated, dude, obstr, "obstruction", challenge.name);
+        }
      });
    };
 

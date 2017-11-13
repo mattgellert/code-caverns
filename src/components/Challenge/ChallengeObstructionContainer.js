@@ -1,6 +1,7 @@
 import {Stage} from 'react-konva';
 import React from 'react';
 import ObstructionSortRocks from './Obstructions/ObstructionSortRocks.js';
+import ObstructionIgniteBomb from './Obstructions/ObstructionIgniteBomb.js';
 
 export default class ChallengeObstructionContainer extends React.Component {
 
@@ -10,6 +11,9 @@ export default class ChallengeObstructionContainer extends React.Component {
     switch (challengeName) {
       case "sortRocks":
         obstacle = <ObstructionSortRocks description={this.props.description} attempt={this.props.attempt}/>
+        break;
+      case "igniteBomb":
+        obstacle = <ObstructionIgniteBomb description={this.props.description} attempt={this.props.attempt}/>
         break;
       default:
         console.log('default obstacle');

@@ -21,7 +21,38 @@ const ChallengeData = [
       y: 200,
       height: 200,
       width: 50,
-      fill: "red"
+      imageURL: "https://i.imgur.com/2chV1pN.png"
+    }
+  },
+
+  {
+    name: 'igniteBomb',
+    description: "You find a bomb on the cavern floor. Beyond the bomb there is a wall with large cracks in it. If you can ignite the bomb, you should be able to destroy the wall and see what lies on the other side.",
+    pass: false, 
+    editor: {
+      input: "eapoyvnsdal;jpowaeryhgas;ldkfjopewiurl;asdkfas;dluasodpifubhyawehrlahueioabdsyugterwfsvdfsgasdouydofiuahsdalpdoimfbdkjdkduippoiuije!;lasdjf;l",
+      expectedOutput: [58, 72, 95, 112, 131],
+      code: `/* Find the indices of the word "boom!" to light the bomb!
+
+Given a large string of characters, find the indices of characters 'b', 'o', 'o', 'm', '!' and return them as an array. You must return the indices of the characters as they appear IN ORDER. For example: return the first occurance of 'b' and then the first occurance of 'o' AFTER the first occurance of b, etc. 
+  
+  Example: 
+    input: "tmfobdfwomueodubmwob!"
+    expectedOutput: [4, 8, 12, 16, 20]
+
+*/
+
+function igniteBomb(str) {
+  // your code here
+}`,
+      attempt: []
+    },
+    obstruction: {
+      x: 413,
+      y: 600, 
+      height: 150,
+      width: 87,
+      imageURL: "https://i.imgur.com/fUzvyAf.png"
     }
   }
 ]
