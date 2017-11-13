@@ -1,17 +1,40 @@
 import React from 'react';
-import {Layer, Rect} from 'react-konva';
+import {Layer, Image} from 'react-konva';
 
 export default class CavernObstructionContainer extends React.Component {
+  state = {
+    obstructionImages: {}
+  }
+
+  componentDidMount() {
+    this.props.challenges.forEach( (challenge) => {
+      const {imageURL} = challenge.obstruction; 
+      const {name} = challenge
+      const image = new window.Image();
+
+      image.onload = () => {
+        this.setState({
+          obstructionImages: {
+            ...this.state.obstructionImages,
+            [name]: image 
+          }
+        }, ()=> {console.log(this.state)});
+      };
+
+      image.src = imageURL;
+    })
+  };
+
   render() {
-    const obstructionElements = this.props.challenges.map( ({obstruction}) => {
-      const {x, y, width, height, fill} = obstruction;
+    const obstructionElements = this.props.challenges.map( (challenge) => {
+      const {x, y, width, height} = challenge.obstruction;
       return (
-        <Rect
+        <Image
           x={x}
           y={y}
           width={width}
           height={height}
-          fill={fill}
+          image={this.state.obstructionImages[challenge.name]}
         />
       );
     });

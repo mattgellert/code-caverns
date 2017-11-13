@@ -6,7 +6,6 @@ import './ChallengeContainer.css';
 export default class ChallengeContainer extends React.Component {
 
   constructor(props) {
-    console.log("challenge container props", props)
     super(props);
     const challenge = this.determineChallenge(props);
     this.state = {
@@ -16,7 +15,7 @@ export default class ChallengeContainer extends React.Component {
   };
 
   handleRun = (output) => {
-    if (Array.isArray(output)) {
+    if (Array.isArray(output) || typeof(output) === 'number') {
       this.setState({
         currentAttempt: output
       });
@@ -26,8 +25,6 @@ export default class ChallengeContainer extends React.Component {
   determineChallenge = (props) => {
     return props.challenges.filter(challenge => (challenge.name === this.props.name))[0]
   };
-
-
 
   render() {
     return (
