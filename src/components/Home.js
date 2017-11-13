@@ -53,7 +53,7 @@ export default class Home extends Component {
       <br/>
       <br/>
       <div className="enter-wrapper">
-      <button className="enter">Enter the Cavern...</button>
+      <button className="enter" onClick={this.props.onEnter} >Enter the Cavern...</button>
       </div>
       </div>
       <div className="home-body-spacer"/>

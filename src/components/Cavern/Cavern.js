@@ -38,6 +38,10 @@ export default class Cavern extends Component {
             <Dude dude={this.props.dude} image={this.props.image} onMove={this.props.onMove} onSpriteRef={this.props.handleSpriteRef}/>
           </Layer>
         </Stage>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
     )
   }
