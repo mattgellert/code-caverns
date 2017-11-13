@@ -1,0 +1,51 @@
+h2.title {
+  text-align: center;
+  font-size: 30px;
+  padding: 10px 10px;
+}
+
+p.subtitle {
+  text-align: center;
+  font-size: 12px;
+  padding-bottom: 30px;
+}
+
+.story-header-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.story-header-spacer {
+  flex: 0.5;
+}
+
+.story-header {
+  flex: 1;
+}
+
+.story-header-image {
+  
+}
+
+.story-body-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.story-body-spacer {
+  flex: 0.25;
+}
+
+.story-body-wrapper {
+  flex: 1;
+  padding-bottom: 75px;
+}
+
+p.story-body {
+  font-size: 16px;
+}
+
+p.story-body-bold {
+  font-size: 16px;
+  font-weight: bold;
+}
