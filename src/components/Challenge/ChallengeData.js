@@ -1,7 +1,7 @@
 const ChallengeData = [
   {
     name: "sortRocks",
-    description: "You've encountered a large boulder blocking the path, but you notice a pile of rocks and realize if you can sort these from smallest to largest, you can climb over and continue.",
+    description: "You've encountered a ledge, but you notice a pile of rocks and realize if you can sort these from smallest to largest, you can climb over and continue.",
     pass: false,
     editor: {
       input: [9,6,3,4,5,1,0,2,8,7,10],
@@ -31,15 +31,19 @@ const ChallengeData = [
     pass: false, 
     editor: {
       input: "eapoyvnsdal;jpowaeryhgas;ldkfjopewiurl;asdkfas;dluasodpifubhyawehrlahueioabdsyugterwfsvdfsgasdouydofiuahsdalpdoimfbdkjdkduippoiuije!;lasdjf;l",
-      expectedOutput: [58, 72, 95, 112, 131],
+      expectedOutput: [58, 72, 94, 112, 131],
       code: `/* Find the indices of the word "boom!" to light the bomb!
 
-Given a large string of characters, find the indices of characters 'b', 'o', 'o', 'm', '!' and return them as an array. You must return the indices of the characters as they appear IN ORDER. For example: return the first occurance of 'b' and then the first occurance of 'o' AFTER the first occurance of b, etc. 
+Given a large string of characters, find the indices of 
+characters 'b', 'o', 'o', 'm', '!' and return them as an 
+array. You must return the indices of the characters as 
+they appear IN ORDER. For example: find the first 
+occurance of 'b' and then find the first occurance of 'o' 
+AFTER the first occurance of b, etc. 
   
   Example: 
     input: "tmfobdfwomueodubmwob!"
     expectedOutput: [4, 8, 12, 16, 20]
-
 */
 
 function igniteBomb(str) {
