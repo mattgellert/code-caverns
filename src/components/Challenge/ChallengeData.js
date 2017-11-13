@@ -20,8 +20,8 @@ const ChallengeData = [
       x: 100,
       y: 200,
       height: 200,
-      width: 50,
-      imageURL: "https://i.imgur.com/2chV1pN.png"
+      width: 122,
+      imageURL: "https://i.imgur.com/6Q6aT78.png"
     }
   },
 
