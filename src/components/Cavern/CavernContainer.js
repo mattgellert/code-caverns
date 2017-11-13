@@ -30,7 +30,7 @@ export default class CavernContainer extends React.Component {
         image: image
       });
     };
-    image.src = 'https://i.imgur.com/JA42ezn.png';
+    image.src = 'https://i.imgur.com/JA42ezn.png'; // Dude sprite sheet
     this.attachKeyListeners();
     this.leftMoves = 0;
     this.rightMoves = 0;

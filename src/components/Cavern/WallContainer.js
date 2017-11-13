@@ -9,7 +9,7 @@ class WallContainer extends React.Component {
 
   componentDidMount() {
     const wallImage = new window.Image();
-    wallImage.src = 'https://i.imgur.com/5UAVZp1.png';
+    wallImage.src = 'https://i.imgur.com/PkIeNYY.png';  
     wallImage.onload = () => {
       this.setState({
         wallImage: wallImage
