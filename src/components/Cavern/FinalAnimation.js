@@ -25,7 +25,7 @@ export default class FinalAnimation extends Component {
           this.setState({
             animationComplete: true
           });
-        }, 18000);
+        }, 16000);
       });
     };
   };
@@ -46,6 +46,10 @@ export default class FinalAnimation extends Component {
     return arr;
   };
 
+  redirectToStory = () => {
+    this.props.history.push("/story")
+  };
+
   render() {
     const animationArray = this.makeAnimationArray();
     const animation = "play";
@@ -60,7 +64,7 @@ export default class FinalAnimation extends Component {
                 <input type="text" onChange={this.props.onUsernameOnQuit} value={this.props.usernameOnQuit}/>
                 <input type="submit" value="Save"/>
                 </form>
-                <a href="http://localhost:3001/story">Don't Save</a>
+                <button onClick={this.redirectToStory}>Don't Save</button>
               </div>
             : this.state.animationComplete && this.props.challengeId
             ? <button onClick={this.props.onSaveGameFromQuit}>Leave the Cave!</button>

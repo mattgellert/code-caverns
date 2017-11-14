@@ -42,7 +42,13 @@ export default class Game extends Component {
     console.log("WTF")
     this.setState({
       challenges: this.getCleanGameState(),
-      started: true
+      started: true,
+      challenge_id: false,
+      xPos: 368,
+      yPos: 268,
+      oldGame: false,
+      mapDeltaX: 0,
+      mapDeltaY: 0
     }, () => {console.log("Game: New Game || State Challenges:", this.state.challenges)});
   }
 
