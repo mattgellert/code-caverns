@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Stage, Layer, Rect, Shape} from 'react-konva';
+import {Stage, Layer, Rect, Shape, Image} from 'react-konva';
 import Dude from './Dude.js';
 import WallContainer from './WallContainer.js';
 import CavernObstructionContainer from './CavernObstructionContainer.js';
@@ -8,20 +8,32 @@ import './Cavern.css'
 export default class Cavern extends Component {
 
   state = {
-    backgroundImage: null
+    backgroundImage: null,
+    shadowImage: null
   }
 
   componentDidMount() {
     const backgroundImage = new window.Image();
+    const shadowImage = new window.Image();
     backgroundImage.src = 'https://i.imgur.com/2b1AT0M.png';
+    shadowImage.src = 'https://i.imgur.com/J7rZYD0.png';
+
     backgroundImage.onload = () => {
       this.setState({
         backgroundImage: backgroundImage
       });
     };
+    shadowImage.onload = () => {
+      this.setState({
+        shadowImage: shadowImage
+      });
+    };
   }
 
   render() { //STILL IN PROGRESS
+    const shadowX = this.props.dudeDeltaX - 625;
+    const shadowY = this.props.dudeDeltaY - 585;
+
     return(
       <div className="cavern">
         <Stage width={800} height={600}>
@@ -36,6 +48,15 @@ export default class Cavern extends Component {
           <CavernObstructionContainer challenges={this.props.challenges} />
           <Layer>
             <Dude dude={this.props.dude} image={this.props.image} onMove={this.props.onMove} onSpriteRef={this.props.handleSpriteRef}/>
+          </Layer>
+          <Layer>
+            <Rect
+              width={2050}
+              height={1750}
+              fillPatternImage={this.state.shadowImage}
+              x={shadowX}
+              y={shadowY}
+            />
           </Layer>
         </Stage>
         <br/>

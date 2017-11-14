@@ -10,8 +10,8 @@ export default class Game extends Component {
     challenges: [...ChallengeData],
     started: false,
     challenge_id: false,
-    xPos: 400,
-    yPos: 300,
+    xPos: 368,
+    yPos: 268,
     oldGame: false,
     mapDeltaX: 0,
     mapDeltaY: 0
@@ -142,9 +142,7 @@ export default class Game extends Component {
     });
   };
 
-  componentWillUnmount() {
-    console.log("CWM")
-  }
+
 
   render() {
     const started = this.state.started;

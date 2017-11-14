@@ -13,7 +13,9 @@ export default class CavernContainer extends React.Component {
       y: this.props.yPos,
       height: 64,
       width: 64,
-      direction: "idle"
+      direction: "idle",
+      deltaX: 0,
+      deltaY: 0
     },
     walls: [...wallData],
     challengeMode: false,
@@ -160,7 +162,9 @@ export default class CavernContainer extends React.Component {
         this.mapDeltaY += updatedMapY;
       };
 
-
+      const dudeDeltaX = updatedDudeX - 368;
+      const dudeDeltaY = updatedDudeY - 268;
+      console.log("dude delta X:", dudeDeltaX, "Y:", dudeDeltaY)
       console.log("game loop mapX:", updatedMapX, "mapY:", updatedMapY)
       console.log("game loop X:", updatedDudeX, "Y:", updatedDudeY)
 
@@ -188,7 +192,9 @@ export default class CavernContainer extends React.Component {
       const updatedDude = {
         ...this.state.dude,
         x: updatedDudeX,
-        y: updatedDudeY
+        y: updatedDudeY,
+        deltaX: dudeDeltaX,
+        deltaY: dudeDeltaY
       };
 
       this.props.onUpdateChallenges(updatedChallenges);
@@ -410,7 +416,7 @@ export default class CavernContainer extends React.Component {
       <div className="cavern-container">
         <ReactCSSTransitionGroup
           transitionName="cavern">
-          {challengeMode ? null : <Cavern walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
+          {challengeMode ? null : <Cavern dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
         </ReactCSSTransitionGroup>
         {challengeMode ? null : <button onClick={this.displayEndMenu}>Quit</button> }
         {this.state.paused ?
