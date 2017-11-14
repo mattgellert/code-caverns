@@ -9,8 +9,8 @@ import './CavernContainer.css'
 export default class CavernContainer extends React.Component {
   state = {
     dude: {
-      x: 400,
-      y: 300,
+      x: this.props.xPos,
+      y: this.props.yPos,
       height: 64,
       width: 64,
       direction: "idle"
@@ -19,10 +19,14 @@ export default class CavernContainer extends React.Component {
     challengeMode: false,
     currentChallengeName: "",
     sprite: null,
-    image: null
+    image: null,
+    paused: false,
+    usernameOnQuit: "",
+    oldGame: this.props.oldGame
   };
 
   componentDidMount() {
+    console.log("cavern container start X", this.state.dude.x, "Y:", this.state.dude.y)
     const image = new window.Image();
 
     image.onload = () => {
@@ -36,6 +40,12 @@ export default class CavernContainer extends React.Component {
     this.rightMoves = 0;
     this.upMoves = 0;
     this.downMoves = 0;
+    this.count = 0;
+    this.mapDeltaX = this.props.mapDeltaX;
+    this.mapDeltaY = this.props.mapDeltaY;
+    this.dudeMove(37);
+    this.dudeStartAnimation(37);
+    this.startgameLoop(10);
   };
 
   getSpriteRef = (sprite) => {
@@ -130,12 +140,29 @@ export default class CavernContainer extends React.Component {
   };
 
   startgameLoop = (step) => {
-    if (!this.state.challengeMode) {
+    if (!this.state.challengeMode && !this.state.paused) {
       const updatedDudeAndMap = this.updateDudeAndMap(step);
-      const updatedMapX = updatedDudeAndMap.mapX;
-      const updatedMapY = updatedDudeAndMap.mapY;
+      let updatedMapX = updatedDudeAndMap.mapX;
+      let updatedMapY = updatedDudeAndMap.mapY;
+      let updatedChallengeX = updatedDudeAndMap.mapX;
+      let updatedChallengeY = updatedDudeAndMap.mapY;
       const updatedDudeX = updatedDudeAndMap.dudeX;
       const updatedDudeY = updatedDudeAndMap.dudeY;
+
+      //
+      if (this.count === 0 && this.state.oldGame) {
+        updatedMapX = this.mapDeltaX;
+        updatedMapY = this.mapDeltaY;
+        updatedChallengeX = 0;
+        updatedChallengeY = 0;
+      } else {
+        this.mapDeltaX += updatedMapX;
+        this.mapDeltaY += updatedMapY;
+      };
+
+
+      console.log("game loop mapX:", updatedMapX, "mapY:", updatedMapY)
+      console.log("game loop X:", updatedDudeX, "Y:", updatedDudeY)
 
       const updatedWalls = this.state.walls.map(wall => {
         return {
@@ -152,8 +179,8 @@ export default class CavernContainer extends React.Component {
          ...challenge,
          obstruction: {
            ...challenge.obstruction,
-           x: challenge.obstruction.x - updatedMapX,
-           y: challenge.obstruction.y - updatedMapY
+           x: challenge.obstruction.x - updatedChallengeX,
+           y: challenge.obstruction.y - updatedChallengeY
          }
        };
      }, this);
@@ -175,6 +202,7 @@ export default class CavernContainer extends React.Component {
       this.rightMoves = 0;
       this.upMoves = 0;
       this.downMoves = 0;
+      this.count++;
     };
   };
 
@@ -347,18 +375,55 @@ export default class CavernContainer extends React.Component {
     this.props.onPassChallenge(challengeName);
   };
 
+  displayEndMenu = () => {
+    this.removeKeyListeners();
+    this.setState({
+      paused: true
+    });
+  };
 
+  removeEndMenu = () => {
+    this.attachKeyListeners();
+    this.setState({
+      paused: false
+    });
+  };
+
+  handleUsernameOnQuit = (event) => {
+    this.setState({
+      usernameOnQuit: event.target.value
+    })
+  };
+
+  saveGameFromQuit = (event) => {
+    event.preventDefault();
+    this.props.endGame(this.state.usernameOnQuit, this.state.dude.x, this.state.dude.y, this.mapDeltaX, this.mapDeltaY);
+  };
 
   render() {
+    const challengeMode = this.state.challengeMode;
     return (
       <div className="cavern-container">
         <ReactCSSTransitionGroup
           transitionName="cavern">
-          {this.state.challengeMode ? null : <Cavern walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
+          {challengeMode ? null : <Cavern walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
         </ReactCSSTransitionGroup>
+        {challengeMode ? null : <button onClick={this.displayEndMenu}>Quit</button> }
+        {this.state.paused ?
+          <div className="pause-window-wrapper">
+          <p>If you're done playing, enter your username and click save!</p>
+          <form onSubmit={this.saveGameFromQuit}>
+          <input type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
+          <input type="submit" value="Save"/>
+          </form>
+          <button onClick={this.removeEndMenu}>Resume Game!</button>
+          <a href="http://localhost:3001/home">Don't Save</a>
+          </div>
+          : null
+        }
         <ReactCSSTransitionGroup
           transitionName="challenge">
-          {this.state.challengeMode ? <ChallengeContainer name={this.state.currentChallengeName} challenges={this.props.challenges} handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
+          {challengeMode ? <ChallengeContainer name={this.state.currentChallengeName} challenges={this.props.challenges} handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
         </ReactCSSTransitionGroup>
       </div>
     );

@@ -21,12 +21,16 @@ export default class StartMenu extends Component {
     })
       .then(resp => resp.json())
       .then(games => {
-        this.historyDisplay = (<ul>{games.data.map((game, idx) => {
-          return (<li onClick={this.props.resumeGame} value={game.relationships.challenge.data.id} key={idx}>Game {idx + 1}</li>)
-        })}</ul>);
-        this.setState({
-          showHistory: true
-        });
+        if (!games.error) {
+          this.historyDisplay = (<ul>{games.data.map((game, idx) => {
+            return (<li onClick={this.props.resumeOldGame} value={game.relationships.challenge.data.id} key={idx}>Game {idx + 1}</li>)
+          })}</ul>);
+          this.setState({
+            showHistory: true
+          });
+        } else {
+          //display the error
+        };
       });
   };
 

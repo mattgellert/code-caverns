@@ -7,8 +7,9 @@ export default class CavernObstructionContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log("CDM: HERE");
     this.props.challenges.forEach( (challenge) => {
-      const {imageURL} = challenge.obstruction; 
+      const {imageURL} = challenge.obstruction;
       const {name} = challenge
       const image = new window.Image();
 
@@ -16,7 +17,7 @@ export default class CavernObstructionContainer extends React.Component {
         this.setState({
           obstructionImages: {
             ...this.state.obstructionImages,
-            [name]: image 
+            [name]: image
           }
         }, ()=> {console.log(this.state)});
       };
@@ -38,6 +39,7 @@ export default class CavernObstructionContainer extends React.Component {
         />
       );
     });
+
 
     return (
       <Layer>
