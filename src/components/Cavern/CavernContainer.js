@@ -5,6 +5,7 @@ import wallData from './wallData.js';
 import Cavern from './Cavern.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './CavernContainer.css'
+import FinalAnimation from './FinalAnimation.js'
 
 export default class CavernContainer extends React.Component {
   state = {
@@ -45,6 +46,7 @@ export default class CavernContainer extends React.Component {
     this.count = 0;
     this.mapDeltaX = this.props.mapDeltaX;
     this.mapDeltaY = this.props.mapDeltaY;
+    this.finalChallengeComplete = false;
     this.dudeMove(37); //DO WE NEED ALL OF THESE?
     this.dudeStartAnimation(37);
     this.startgameLoop(10); //CAN WE PUT THIS AFTER SET STATE IN dudeStartAnimation() ?
@@ -116,6 +118,12 @@ export default class CavernContainer extends React.Component {
     if (this.state.challengeMode === true && nextState.challengeMode === false) {
       this.attachKeyListeners();
       this.state.sprite.start();
+      nextProps.challenges.forEach(challenge => {
+        if (challenge.name === "circleOfStones" && challenge.pass === true) {
+          this.removeKeyListeners();
+      		this.finalChallengeComplete = true;
+        };
+      });
     } else if (this.state.challengeMode === false && nextState.challengeMode === true) {
       this.removeKeyListeners();
       this.state.sprite.stop();
@@ -412,30 +420,39 @@ export default class CavernContainer extends React.Component {
 
   render() {
     const challengeMode = this.state.challengeMode;
-    return (
-      <div className="cavern-container">
-        <ReactCSSTransitionGroup
-          transitionName="cavern">
-          {challengeMode ? null : <Cavern dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
-        </ReactCSSTransitionGroup>
-        {challengeMode ? null : <button onClick={this.displayEndMenu}>Quit</button> }
-        {this.state.paused ?
-          <div className="pause-window-wrapper">
-          <p>If you're done playing, enter your username and click save!</p>
-          <form onSubmit={this.saveGameFromQuit}>
-          <input type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
-          <input type="submit" value="Save"/>
-          </form>
-          <button onClick={this.removeEndMenu}>Resume Game!</button>
-          <a href="http://localhost:3001/home">Don't Save</a>
-          </div>
-          : null
-        }
-        <ReactCSSTransitionGroup
-          transitionName="challenge">
-          {challengeMode ? <ChallengeContainer name={this.state.currentChallengeName} challenges={this.props.challenges} handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
-        </ReactCSSTransitionGroup>
-      </div>
-    );
+
+    if (!this.finalChallengeComplete) {
+      return (
+        <div className="cavern-container">
+          <ReactCSSTransitionGroup
+            transitionName="cavern">
+            {challengeMode ? null : <Cavern dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
+          </ReactCSSTransitionGroup>
+          {challengeMode ? null : <button onClick={this.displayEndMenu}>Quit</button> }
+          {this.state.paused ?
+            <div className="pause-window-wrapper">
+            <p>If you're done playing, enter your username and click save!</p>
+            <form onSubmit={this.saveGameFromQuit}>
+            <input type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
+            <input type="submit" value="Save"/>
+            </form>
+            <button onClick={this.removeEndMenu}>Resume Game!</button>
+            <a href="http://localhost:3001/home">Don't Save</a>
+            </div>
+            : null
+          }
+          <ReactCSSTransitionGroup
+            transitionName="challenge">
+            {challengeMode ? <ChallengeContainer name={this.state.currentChallengeName} challenges={this.props.challenges} handleQuit={this.handleChallengeQuit} handlePass={this.handleChallengePass}/> : null}
+          </ReactCSSTransitionGroup>
+        </div>
+      );
+    } else {
+      return (
+        <div className="final-animation">
+          <FinalAnimation />
+        </div>
+      )
+    }
   };
 };
