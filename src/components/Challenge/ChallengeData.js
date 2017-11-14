@@ -94,6 +94,85 @@ function findOppositeEmerald(n, firstNumber) {
       width: 354,
       imageURL: 'https://i.imgur.com/yodP8As.png'
     }
+  },
+
+  {
+    name: 'stringReverse',
+    description: 'You encounter a stone wall with an inscription written on what appears to be a door. If you can decode the message, perhaps you will be able to open the door and see what lies beyond.',
+    pass: false,
+    editor: {
+      input: '.tnemnethgilne ot htap eht laever llahs ecirht derettu yltfiwS .ahnidaB uhkA',
+      expectedOutput: 'Akhu Badinha. Swiftly uttered thrice shall reveal the path to enlightenment.',
+      code: `/*
+  Given a string, write a function to reverse the string 
+  in order to reveal the message.
+  
+  Example: 
+    input: "yawaedih"
+    expectedOutput: "hideaway" 
+*/
+
+function stringReverse(str) {
+  // your code here 
+}`, 
+      attempt: '.tnemnethgilne ot htap eht laever llahs ecirht derettu yltfiwS .ahnidaB uhkA'
+    },
+    obstruction: {
+      x: -250,
+      y: -200,
+      height: 50,
+      width: 200,
+      imageURL: 'https://i.imgur.com/qM6Vpj8.png'
+    }
+  },
+
+  {
+    name: 'pitOfSnakes',
+    description: 'You encounter a pit of snakes blocking the passageway. If you can carefully jump inbetween the snakes, you will be able to continue through the cavern.',
+    pass: false,
+    editor: {
+      input: [1, 4, 10, 6, 2],
+      expectedOutput: 7,
+      code: `/*
+
+  You are given an array of integers representing 
+  coordinates of snakes situated on a straight line.
+  
+  Assume that you are jumping from the point with 
+  coordinate 0 to the right. You can only make jumps 
+  of the same length represented by an integer.
+
+  Find the MINIMAL length of the jump that will allow 
+  you to land inbetween snakes after each jump and 
+  successfully navigate the pit of snakes. 
+  
+  Example: 
+    input: [5, 3, 6, 7, 9] 
+    expectedOutput: 4 
+    
+    S's represent snakes. Starting at 0, jumps of length four 
+    land you safely at 4 and 8 and the last jump gets you 
+    out of the snake pit. 
+    
+             jump          jump         jump 
+    start --------- X ------------- X --------
+                S       S   S   S       S 
+    0___1___2___3___4___5___6___7___8___9___10
+*/
+
+function jumpThroughSnakes(arr) {
+  // your code here 
+}
+`,
+      attempt: ''
+    },
+    obstruction: {
+      x: -800,
+      y: -200,
+      height: 50,
+      width: 200,
+      imageURL: 'https://i.imgur.com/h1jkkwc.png'
+    }
   }
 ]
 
