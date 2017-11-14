@@ -230,6 +230,37 @@ export function getCleanChallengeData() {
         width: 200,
         imageURL: 'https://i.imgur.com/bnSh1oF.png'
       }
+    }, 
+
+    {
+      name: 'stonePegs',
+      description: 'You have encountered a table with stone pegs sitting vertically in slots in the table. You notice a line carved in the wall behind the table. Most of the pegs extending from the table are below the line carved in the wall, however some of the pegs extend beyond the line. You decide to try and pull out the pegs that extend beyond the line and see what happens...', 
+      pass: false, 
+      editor: {
+        input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6,1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1,9,8,7,6,7,8,9,8,7,6,5,4,3,2,2],
+        expectedOutput: [7, 9, 12, 24, 33, 39],
+        code: `/*
+  Given an array of numbers, find the indices of each occurance of the maximum value in the array. 
+  
+    These indices represent the positions of the pegs that you must remove from the table so that all pegs remaining lie below the line carved into the wall. 
+    
+  Example: 
+    input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6]
+    expectedOutput: [7, 9, 12]
+*/
+
+function findIndicesOfMax(arr) {
+  // your code here 
+}`,
+        attempt: '', 
+      },
+      obstruction: {
+        x: -250,
+        y: 750,
+        height: 50, 
+        width: 200,
+        imageURL: 'https://i.imgur.com/z4IvWjC.png'
+      }
     }
   ]
 }
