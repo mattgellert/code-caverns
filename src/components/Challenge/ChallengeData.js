@@ -94,6 +94,36 @@ function findOppositeEmerald(n, firstNumber) {
       width: 354,
       imageURL: 'https://i.imgur.com/yodP8As.png'
     }
+  },
+
+  {
+    name: 'stringReverse',
+    description: 'You encounter a stone wall with an inscription written on what appears to be a door. If you can decode the message, perhaps you will be able to open the door and see what lies beyond.',
+    pass: false,
+    editor: {
+      input: '.tnemnethgilne ot htap eht laever llahs ecirht derettu yltfiwS .ahnidaB uhkA',
+      expectedOutput: 'Akhu Badinha. Swiftly uttered thrice shall reveal the path to enlightenment.',
+      code: `/*
+  Given a string, write a function to reverse the string 
+  in order to reveal the message.
+  
+  Example: 
+    input: "yawaedih"
+    expectedOutput: "hideaway" 
+*/
+
+function stringReverse(str) {
+  // your code here 
+}`, 
+      attempt: '.tnemnethgilne ot htap eht laever llahs ecirht derettu yltfiwS .ahnidaB uhkA'
+    },
+    obstruction: {
+      x: -250,
+      y: -200,
+      height: 50,
+      width: 200,
+      imageURL: 'https://i.imgur.com/qM6Vpj8.png'
+    }
   }
 ]
 
