@@ -5,6 +5,7 @@ import ObstructionIgniteBomb from './Obstructions/ObstructionIgniteBomb.js';
 import ObstructionReverseString from './Obstructions/ObstructionReverseString.js';
 import ObstructionCircleOfStones from './Obstructions/ObstructionCircleOfStones.js';
 import ObstructionPitOfSnakes from './Obstructions/ObstructionPitOfSnakes.js';
+import ObstructionItemWeights from './Obstructions/ObstructionItemWeights.js'; 
 
 export default class ChallengeObstructionContainer extends React.Component {
 
@@ -27,6 +28,9 @@ export default class ChallengeObstructionContainer extends React.Component {
       case 'pitOfSnakes':
         obstacle = <ObstructionPitOfSnakes description={this.props.description} attempt={this.props.attempt}/>
         break;
+      case 'itemWeights': 
+        obstacle = <ObstructionItemWeights description={this.props.description} attempt={this.props.attempt}/>
+        break; 
       default:
         console.log('default obstacle');
         break;
