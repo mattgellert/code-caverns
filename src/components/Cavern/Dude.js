@@ -83,3 +83,18 @@ export default Dude;
 //   }
 //   return masterArr
 // }
+// let makeArrays= () => {
+//   let arr = []
+//   let xCount = 0;
+//   let yCount = 0;
+//
+//   for (let i = 0; i < 11; i++) {
+//     yCount += 600;
+//     xCount = 0;
+//     for (let j = 0; j < 10; j++) {
+//         arr.push(xCount, yCount, 800, 600)
+//         xCount += 800;
+//     }
+//   }
+//   return arr
+// }

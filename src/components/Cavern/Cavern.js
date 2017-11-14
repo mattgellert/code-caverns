@@ -18,6 +18,7 @@ export default class Cavern extends Component {
     backgroundImage.src = 'https://i.imgur.com/2b1AT0M.png';
     shadowImage.src = 'https://i.imgur.com/J7rZYD0.png';
 
+
     backgroundImage.onload = () => {
       this.setState({
         backgroundImage: backgroundImage
@@ -33,7 +34,7 @@ export default class Cavern extends Component {
   render() { //STILL IN PROGRESS
     const shadowX = this.props.dudeDeltaX - 625;
     const shadowY = this.props.dudeDeltaY - 585;
-
+    console.log(this.state.shadowImage)
     return(
       <div className="cavern">
         <Stage width={800} height={600}>
