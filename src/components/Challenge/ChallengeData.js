@@ -28,20 +28,20 @@ const ChallengeData = [
   {
     name: 'igniteBomb',
     description: "You find a bomb on the cavern floor. Beyond the bomb there is a wall with large cracks in it. If you can ignite the bomb, you should be able to destroy the wall and see what lies on the other side.",
-    pass: false, 
+    pass: false,
     editor: {
       input: "eapoyvnsdal;jpowaeryhgas;ldkfjopewiurl;asdkfas;dluasodpifubhyawehrlahueioabdsyugterwfsvdfsgasdouydofiuahsdalpdoimfbdkjdkduippoiuije!;lasdjf;l",
       expectedOutput: [58, 72, 94, 112, 131],
       code: `/* Find the indices of the word "boom!" to light the bomb!
 
-Given a large string of characters, find the indices of 
-characters 'b', 'o', 'o', 'm', '!' and return them as an 
-array. You must return the indices of the characters as 
-they appear IN ORDER. For example: find the first 
-occurance of 'b' and then find the first occurance of 'o' 
-AFTER the first occurance of b, etc. 
-  
-  Example: 
+Given a large string of characters, find the indices of
+characters 'b', 'o', 'o', 'm', '!' and return them as an
+array. You must return the indices of the characters as
+they appear IN ORDER. For example: find the first
+occurance of 'b' and then find the first occurance of 'o'
+AFTER the first occurance of b, etc.
+
+  Example:
     input: "tmfobdfwomueodubmwob!"
     expectedOutput: [4, 8, 12, 16, 20]
 */
@@ -53,7 +53,7 @@ function igniteBomb(str) {
     },
     obstruction: {
       x: 413,
-      y: 600, 
+      y: 600,
       height: 150,
       width: 87,
       imageURL: "https://i.imgur.com/fUzvyAf.png"
@@ -63,7 +63,7 @@ function igniteBomb(str) {
   {
     name: 'circleOfStones',
     description: 'You encounter a large circle of stones embedded with gems. You notice that while most of the stones contain diamonds, two of the stones positioned directly opposite each other in the circle contain emeralds. One of the stones containing an emerald is emitting a light. You wonder what will happen if you can direct the light at the other emerald, directly across the cirlce.',
-    pass: false, 
+    pass: false,
     editor: {
       input: {
         n: [0,1,2,3,4,5,6,7,8,9,10,11],
@@ -83,9 +83,9 @@ function igniteBomb(str) {
 */
 
 function findOppositeEmerald(n, firstNumber) {
-  // your code here 
-}`, 
-      attempt: null
+  // your code here
+}`,
+      attempt: ""
     },
     obstruction: {
       x: -900,

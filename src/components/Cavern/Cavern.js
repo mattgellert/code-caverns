@@ -24,7 +24,7 @@ export default class Cavern extends Component {
   render() { //STILL IN PROGRESS
     return(
       <div className="cavern">
-        <Stage width={800} height={600} visible={true}>
+        <Stage width={800} height={600}>
           <Layer>
             <Rect
               width={1920}

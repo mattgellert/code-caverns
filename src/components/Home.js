@@ -46,7 +46,7 @@ export default class Home extends Component {
       <p className="intro"> This is the untold story of Johann Westhauser, who was trapped 1,000 meters below ground while exploring Germany's deepest and longest cavern. The labyrinth-like Riesending cave complex.</p>
       <br/>
       <br/>
-      <p className="intro">Your mission, should you choose to accept it, is to guide Johann out of the depths of the cavern. He has fallen to uncharted territory, and the obstacles he must overcome are not quite what you'd expect almost a mile below the surface...</p>
+      <p className="intro">Your mission, should you choose to accept it, is to guide Johann out of the depths of the cavern. He has fallen into uncharted territory, and the obstacles he must overcome are not quite what you'd expect almost a mile beneath the surface...</p>
       <br/>
       <br/>
       <p className="intro">Will Johann escape?</p>
