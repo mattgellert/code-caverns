@@ -142,6 +142,10 @@ export default class Game extends Component {
     });
   };
 
+  componentWillUnmount() {
+    console.log("CWM")
+  }
+
   render() {
     const started = this.state.started;
 

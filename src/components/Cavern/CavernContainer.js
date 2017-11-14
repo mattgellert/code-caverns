@@ -43,9 +43,9 @@ export default class CavernContainer extends React.Component {
     this.count = 0;
     this.mapDeltaX = this.props.mapDeltaX;
     this.mapDeltaY = this.props.mapDeltaY;
-    this.dudeMove(37);
+    this.dudeMove(37); //DO WE NEED ALL OF THESE?
     this.dudeStartAnimation(37);
-    this.startgameLoop(10);
+    this.startgameLoop(10); //CAN WE PUT THIS AFTER SET STATE IN dudeStartAnimation() ?
   };
 
   getSpriteRef = (sprite) => {
@@ -398,6 +398,10 @@ export default class CavernContainer extends React.Component {
   saveGameFromQuit = (event) => {
     event.preventDefault();
     this.props.endGame(this.state.usernameOnQuit, this.state.dude.x, this.state.dude.y, this.mapDeltaX, this.mapDeltaY);
+  };
+
+  componentWillUnmount() {
+    this.removeKeyListeners();
   };
 
   render() {
