@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Stage, Layer, Sprite } from 'react-konva';
+import './FinalAnimation.css'
 
 export default class FinalAnimation extends Component {
 
@@ -58,13 +59,15 @@ export default class FinalAnimation extends Component {
       <div className="final-animation-wrapper">
           {this.state.animationComplete && !this.props.challengeId
             ?
-            <div className="final-save-form-wrapper">
-                <p>Please enter your username and click save!</p>
-                <form onSubmit={this.props.onSaveGameFromQuit}>
-                <input type="text" onChange={this.props.onUsernameOnQuit} value={this.props.usernameOnQuit}/>
-                <input type="submit" value="Save"/>
-                </form>
-                <button onClick={this.redirectToStory}>Don't Save</button>
+              <div className="modal" id="pauseModel">
+                <div className="modal-content">
+                  <p>If you're done playing, enter your username and click save!</p>
+                  <form onSubmit={this.props.onSaveGameFromQuit}>
+                    <input type="text" onChange={this.props.onUsernameOnQuit} value={this.props.usernameOnQuit}/>
+                    <input type="submit" value="Save"/>
+                  </form>
+                  <button onClick={this.redirectToStory}>Skip Save</button>
+                </div>
               </div>
             : this.state.animationComplete && this.props.challengeId
             ? <button onClick={this.props.onSaveGameFromQuit}>Leave the Cave!</button>

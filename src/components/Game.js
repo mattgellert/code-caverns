@@ -118,7 +118,7 @@ export default class Game extends Component {
     })
       .then(this.setState({
         started: false
-      })
+      }, () => this.props.history.push('/home'))
     );
   };
 
@@ -154,15 +154,12 @@ export default class Game extends Component {
   };
 
 
-
-
-
   render() {
     const started = this.state.started;
 
     return (
       <div>
-        {started ? <CavernContainer challengeId={this.state.challenge_id} oldGame={this.state.oldGame} mapDeltaX={this.state.mapDeltaX} mapDeltaY={this.state.mapDeltaY} xPos={this.state.xPos} yPos={this.state.yPos} endGame={this.endGame} getCode={this.handleGetCode} challenges={this.state.challenges} onUpdateChallenges={this.handleUpdateChallenges} onPassChallenge={this.handlePassChallenge}/> : <StartMenu newGame={this.newGame} resumeOldGame={this.resumeOldGame} />}
+        {started ? <CavernContainer history={this.props.history} challengeId={this.state.challenge_id} oldGame={this.state.oldGame} mapDeltaX={this.state.mapDeltaX} mapDeltaY={this.state.mapDeltaY} xPos={this.state.xPos} yPos={this.state.yPos} endGame={this.endGame} getCode={this.handleGetCode} challenges={this.state.challenges} onUpdateChallenges={this.handleUpdateChallenges} onPassChallenge={this.handlePassChallenge}/> : <StartMenu newGame={this.newGame} resumeOldGame={this.resumeOldGame} />}
       </div>
     );
   };

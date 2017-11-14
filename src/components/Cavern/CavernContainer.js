@@ -69,7 +69,7 @@ export default class CavernContainer extends React.Component {
     this.keyupListener = (e) => {
       e.preventDefault();
       this.dudeEndAnimation();
-    }
+    };
     document.addEventListener('keydown', this.keydownListener);
     document.addEventListener('keyup', this.keyupListener);
   };
@@ -290,7 +290,7 @@ export default class CavernContainer extends React.Component {
        dudeY: this.state.dude.y,
        update: false
      };
-     
+
      this.props.challenges.forEach(challenge => {
       const obstr = {
          left: challenge.obstruction.x,
@@ -417,6 +417,10 @@ export default class CavernContainer extends React.Component {
     this.removeKeyListeners();
   };
 
+  redirectToStory = () => {
+    this.props.history.push("/home")
+  };
+
   render() {
     const challengeMode = this.state.challengeMode;
 
@@ -427,16 +431,18 @@ export default class CavernContainer extends React.Component {
             transitionName="cavern">
             {challengeMode ? null : <Cavern dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
           </ReactCSSTransitionGroup>
-          {challengeMode ? null : <button onClick={this.displayEndMenu}>Quit</button> }
+          {challengeMode ? null : <button className="start" onClick={this.displayEndMenu}>Quit</button> }
           {this.state.paused ?
-            <div className="pause-window-wrapper">
-            <p>If you're done playing, enter your username and click save!</p>
-            <form onSubmit={this.saveGameFromQuit}>
-            <input type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
-            <input type="submit" value="Save"/>
-            </form>
-            <button onClick={this.removeEndMenu}>Resume Game!</button>
-            <a href="http://localhost:3001/home">Don't Save</a>
+            <div className="modal" id="pauseModel">
+              <div className="modal-content">
+                <span className="close" onClick={this.removeEndMenu}>&times;</span>
+                <p>If you're done playing, enter your username and click save!</p>
+                <form onSubmit={this.saveGameFromQuit}>
+                  <input type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
+                  <input type="submit" value="Save"/>
+                </form>
+                <button className="start" onClick={this.redirectToStory}>Skip Save</button>
+              </div>
             </div>
             : null
           }
@@ -449,7 +455,7 @@ export default class CavernContainer extends React.Component {
     } else {
       return (
         <div className="final-animation">
-          <FinalAnimation challengeId={this.props.challengeId} onUsernameOnQuit={this.handleUsernameOnQuit} onSaveGameFromQuit={this.saveGameFromQuit} usernameOnQuit={this.state.usernameOnQuit}/>
+          <FinalAnimation history={this.props.history} challengeId={this.props.challengeId} onUsernameOnQuit={this.handleUsernameOnQuit} onSaveGameFromQuit={this.saveGameFromQuit} usernameOnQuit={this.state.usernameOnQuit}/>
         </div>
       )
     };

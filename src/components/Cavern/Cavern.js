@@ -31,9 +31,21 @@ export default class Cavern extends Component {
     };
   }
 
-  render() { //STILL IN PROGRESS
-    const shadowX = this.props.dudeDeltaX - 625;
-    const shadowY = this.props.dudeDeltaY - 585;
+  flickerLights = () => {
+    let shadow = {};
+    let negative = 0;
+    Math.random() > 0.5 ? negative = -1 : negative = 1;
+
+    return shadow = {
+      x: (this.props.dudeDeltaX - 625) + (negative * (4 * Math.random())),
+      y: (this.props.dudeDeltaY - 585) + (negative * (4 * Math.random())),
+      width: (2050 - (negative * (4 * Math.random()))),
+      height: (1750 - (negative * (4 * Math.random())))
+    }
+  };
+
+  render() { 
+    const shadow = this.flickerLights();
 
     return(
       <div className="cavern">
@@ -52,11 +64,11 @@ export default class Cavern extends Component {
           </Layer>
           <Layer>
             <Rect
-              width={2050}
-              height={1750}
+              width={shadow.width}
+              height={shadow.height}
               fillPatternImage={this.state.shadowImage}
-              x={shadowX}
-              y={shadowY}
+              x={shadow.x}
+              y={shadow.y}
             />
           </Layer>
         </Stage>

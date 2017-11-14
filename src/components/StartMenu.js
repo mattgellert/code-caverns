@@ -57,9 +57,9 @@ export default class StartMenu extends Component {
             <input onChange={this.handleUsername} type="text" placeholder="Enter your username" value={this.state.username}/>
             <input type="submit" value="Retrieve Games"/>
           </form>
-           : <button onClick={this.displayResumeForm}>Resume Game</button> }
+           : <button className="start" onClick={this.displayResumeForm}>Resume Game</button> }
         { this.state.showHistory ? this.historyDisplay : null }
-        <button onClick={this.props.newGame}>New Game</button>
+        <button className="start" onClick={this.props.newGame}>New Game</button>
       </div>
     );
   };
