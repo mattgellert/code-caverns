@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Rect, Layer} from 'react-konva';
 
 
-const ObstructionIgniteBomb = (props) => {
+const ObstructionStonePegs = (props) => {
     let description = props.description;
     let text = [""];
     let line = 0;
@@ -38,4 +38,4 @@ const ObstructionIgniteBomb = (props) => {
     );
 };
 
-export default ObstructionIgniteBomb;
+export default ObstructionStonePegs;
