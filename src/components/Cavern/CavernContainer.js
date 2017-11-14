@@ -1,11 +1,13 @@
 import React from 'react';
 import {Stage, Layer} from 'react-konva';
+import { Redirect } from 'react-router-dom';
 import ChallengeContainer from '../Challenge/ChallengeContainer.js';
 import wallData from './wallData.js';
 import Cavern from './Cavern.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './CavernContainer.css'
 import FinalAnimation from './FinalAnimation.js'
+import ChallengeData from '../Challenge/ChallengeData.js';
 
 export default class CavernContainer extends React.Component {
   state = {
@@ -29,7 +31,6 @@ export default class CavernContainer extends React.Component {
   };
 
   componentDidMount() {
-    console.log("cavern container start X", this.state.dude.x, "Y:", this.state.dude.y)
     const image = new window.Image();
 
     image.onload = () => {
@@ -159,7 +160,6 @@ export default class CavernContainer extends React.Component {
       const updatedDudeX = updatedDudeAndMap.dudeX;
       const updatedDudeY = updatedDudeAndMap.dudeY;
 
-      //
       if (this.count === 0 && this.state.oldGame) {
         updatedMapX = this.mapDeltaX;
         updatedMapY = this.mapDeltaY;
@@ -172,9 +172,6 @@ export default class CavernContainer extends React.Component {
 
       const dudeDeltaX = updatedDudeX - 368;
       const dudeDeltaY = updatedDudeY - 268;
-      console.log("dude delta X:", dudeDeltaX, "Y:", dudeDeltaY)
-      console.log("game loop mapX:", updatedMapX, "mapY:", updatedMapY)
-      console.log("game loop X:", updatedDudeX, "Y:", updatedDudeY)
 
       const updatedWalls = this.state.walls.map(wall => {
         return {
@@ -229,28 +226,24 @@ export default class CavernContainer extends React.Component {
     if (this.state.dude.x < 200) { //if against or beyond the left bound
       if (this.rightMoves === 0 && this.leftMoves > 0) {
         updatedDudeX = this.state.dude.x; //keep dude to left bount
-        console.log('left bound');
         updatedMapX = (this.rightMoves - this.leftMoves) * step;
       };
     };
     if (this.state.dude.x > 600) { //if against or beyond the right bound
       if (this.leftMoves === 0 && this.rightMoves > 0) {
         updatedDudeX = this.state.dude.x; //keep dude to right bound
-        console.log('right bound');
         updatedMapX = (this.rightMoves - this.leftMoves) * step;
       };
     };
     if (this.state.dude.y < 150) { //if against or beyond the upper bound
       if (this.downMoves === 0 && this.upMoves > 0) {
         updatedDudeY = this.state.dude.y; //keep dude to upper bound
-        console.log('upper bound');
         updatedMapY = (this.downMoves - this.upMoves) * step;
       };
     };
     if (this.state.dude.y > 450) { //if against or beyond the lower bound
       if (this.upMoves === 0 && this.downMoves > 0) {
         updatedDudeY = this.state.dude.y; //keep dude to lower bound
-        console.log('lower bound');
         updatedMapY = (this.downMoves - this.upMoves) * step;
       };
     };
@@ -316,7 +309,6 @@ export default class CavernContainer extends React.Component {
    };
 
     if (updated.type === "obstruction" && updated.update === true) {
-      console.log("initiate a challenge");
       this.setState({
         challengeMode: true,
         currentChallengeName: updated.challengeName
@@ -324,7 +316,6 @@ export default class CavernContainer extends React.Component {
     };
 
     if (updated.update && !boundaryCheck && updated.type !== "obstruction") {
-      console.log('collision')
       this.setState({
         dude: {
           ...this.state.dude,
@@ -391,9 +382,13 @@ export default class CavernContainer extends React.Component {
 
   displayEndMenu = () => {
     this.removeKeyListeners();
-    this.setState({
-      paused: true
-    });
+    if (!this.props.challengeId) {
+      this.setState({
+        paused: true
+      });
+    } else {
+      this.props.endGame(false, this.state.dude.x, this.state.dude.y, this.mapDeltaX, this.mapDeltaY);
+    };
   };
 
   removeEndMenu = () => {
@@ -411,7 +406,11 @@ export default class CavernContainer extends React.Component {
 
   saveGameFromQuit = (event) => {
     event.preventDefault();
-    this.props.endGame(this.state.usernameOnQuit, this.state.dude.x, this.state.dude.y, this.mapDeltaX, this.mapDeltaY);
+    if (!this.props.challengeId) {
+      this.props.endGame(this.state.usernameOnQuit, this.state.dude.x, this.state.dude.y, this.mapDeltaX, this.mapDeltaY);
+    } else {
+      this.props.endGame(false, this.state.dude.x, this.state.dude.y, this.mapDeltaX, this.mapDeltaY);
+    };
   };
 
   componentWillUnmount() {
@@ -450,9 +449,9 @@ export default class CavernContainer extends React.Component {
     } else {
       return (
         <div className="final-animation">
-          <FinalAnimation />
+          <FinalAnimation challengeId={this.props.challengeId} onUsernameOnQuit={this.handleUsernameOnQuit} onSaveGameFromQuit={this.saveGameFromQuit} usernameOnQuit={this.state.usernameOnQuit}/>
         </div>
       )
-    }
+    };
   };
 };

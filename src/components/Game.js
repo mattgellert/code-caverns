@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CavernContainer from './Cavern/CavernContainer.js'
 import ChallengeContainer from './Challenge/ChallengeContainer.js';
-import ChallengeData from './Challenge/ChallengeData.js';
+import ChallengeData, {getCleanChallengeData} from './Challenge/ChallengeData.js';
 import StartMenu from './StartMenu.js'
 
 export default class Game extends Component {
@@ -16,6 +16,10 @@ export default class Game extends Component {
     mapDeltaX: 0,
     mapDeltaY: 0
   };
+
+  getCleanGameState = () => {
+    return getCleanChallengeData()
+  }
 
   challengeDataToArray = (challengesObject) => {
     const arr = [];
@@ -35,15 +39,17 @@ export default class Game extends Component {
   };
 
   newGame = () => {
+    console.log("WTF")
     this.setState({
+      challenges: this.getCleanGameState(),
       started: true
-    });
-  };
+    }, () => {console.log("Game: New Game || State Challenges:", this.state.challenges)});
+  }
 
   resumeOldGame = (event) => {
     const challenge_id = event.target.value;
     let challenges;
-
+    console.log("resume old game fetch")
     fetch(`http://localhost:3000/api/v1/users/resume_game?challenge_id=${challenge_id}`, {
       method: 'get',
       headers: {
@@ -75,7 +81,6 @@ export default class Game extends Component {
 
 
   endGame = (username, xPos, yPos, mapDeltaX, mapDeltaY) => {
-    console.log("end game X:", xPos, "Y:", yPos)
     let data;
     if (this.state.challenge_id) {
       data = {
@@ -144,12 +149,14 @@ export default class Game extends Component {
 
 
 
+
+
   render() {
     const started = this.state.started;
 
     return (
       <div>
-        {started ? <CavernContainer oldGame={this.state.oldGame} mapDeltaX={this.state.mapDeltaX} mapDeltaY={this.state.mapDeltaY} xPos={this.state.xPos} yPos={this.state.yPos} endGame={this.endGame} getCode={this.handleGetCode} challenges={this.state.challenges} onUpdateChallenges={this.handleUpdateChallenges} onPassChallenge={this.handlePassChallenge}/> : <StartMenu newGame={this.newGame} resumeOldGame={this.resumeOldGame} />}
+        {started ? <CavernContainer challengeId={this.state.challenge_id} oldGame={this.state.oldGame} mapDeltaX={this.state.mapDeltaX} mapDeltaY={this.state.mapDeltaY} xPos={this.state.xPos} yPos={this.state.yPos} endGame={this.endGame} getCode={this.handleGetCode} challenges={this.state.challenges} onUpdateChallenges={this.handleUpdateChallenges} onPassChallenge={this.handlePassChallenge}/> : <StartMenu newGame={this.newGame} resumeOldGame={this.resumeOldGame} />}
       </div>
     );
   };

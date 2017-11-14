@@ -13,7 +13,7 @@ export default class Editor extends React.Component {
     currentCode: this.props.challenge.editor.code
   };
 
-  handleChange = (input) => { 
+  handleChange = (input) => {
     this.setState({
       currentCode: input
     });
@@ -23,8 +23,8 @@ export default class Editor extends React.Component {
     this.setState({
       error: null
     }, () => {
-  
-        
+
+
         try {
           if (this.props.challenge.name === 'circleOfStones') {
             const inputN = this.props.challenge.editor.input.n;
@@ -66,6 +66,10 @@ export default class Editor extends React.Component {
   onQuit = () => {
     this.props.onQuit(this.props.challenge.name, this.state.currentCode, this.props.challenge.pass);
   };
+
+  componentWillUnmount() {
+    console.log("Editor CWU")
+  }
 
 
   render() {

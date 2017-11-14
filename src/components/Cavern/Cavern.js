@@ -34,7 +34,7 @@ export default class Cavern extends Component {
   render() { //STILL IN PROGRESS
     const shadowX = this.props.dudeDeltaX - 625;
     const shadowY = this.props.dudeDeltaY - 585;
-    console.log(this.state.shadowImage)
+
     return(
       <div className="cavern">
         <Stage width={800} height={600}>
@@ -65,8 +65,8 @@ export default class Cavern extends Component {
         <br/>
         <br/>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 // <Rect width={800} height={600} fill='#583b87'/>
