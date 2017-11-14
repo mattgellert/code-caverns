@@ -26,33 +26,50 @@ export default class Editor extends React.Component {
   
         
         try {
-          if (this.props.challenge.name === 'circleOfStones') {
-            const inputN = this.props.challenge.editor.input.n;
-            const inputFirstNumber = this.props.challenge.editor.input.firstNumber
-            const expectedNum = this.props.challenge.editor.expectedOutput;
-            const userFunction = eval( `(${this.state.currentCode})` );
-            const pass = userFunction(inputN, inputFirstNumber) === expectedNum;
+          const userFunction = eval( `(${this.state.currentCode})` );
+          const expectedOutput = this.props.challenge.editor.expectedOutput; 
+          let pass, evalUserFunction;
 
-            pass ? this.props.onPass(this.props.challenge.name) : null;
-            this.props.handleRun( userFunction(inputN, inputFirstNumber) );
-
-            this.setState({
-              output: JSON.stringify( userFunction(inputN, inputFirstNumber) )
-            });
-
-          } else {
-            const inputArray = this.props.challenge.editor.input.slice();
-            const sortedArray = this.props.challenge.editor.expectedOutput;
-            const userFunction = eval( `(${this.state.currentCode})` );
-            const pass = JSON.stringify(userFunction(inputArray)) === JSON.stringify(sortedArray);
-
-            pass ? this.props.onPass(this.props.challenge.name) : null;
-            this.props.handleRun(userFunction(inputArray));
-
-            this.setState({
-              output: JSON.stringify(userFunction(inputArray))
-            });
+          switch(this.props.challenge.name) {
+            case 'circleOfStones': 
+              const inputN = this.props.challenge.editor.input.n;
+              const inputFirstNumber = this.props.challenge.editor.input.firstNumber
+              pass = userFunction(inputN, inputFirstNumber) === expectedOutput;
+              evalUserFunction = userFunction(inputN, inputFirstNumber);
+              break; 
+            case 'itemWeights': 
+              const {value1, weight1, value2, weight2, maxW} = this.props.challenge.editor.input;
+              evalUserFunction = userFunction(value1, weight1, value2, weight2, maxW);
+              pass = evalUserFunction === expectedOutput;
+              break; 
+            case 'igniteBomb': 
+              const str = this.props.challenge.editor.input;
+              evalUserFunction = userFunction(str); 
+              pass = JSON.stringify(evalUserFunction) === JSON.stringify(expectedOutput);
+              break; 
+            case 'pitOfSnakes':
+              const snakesArray = this.props.challenge.editor.input;
+              evalUserFunction = userFunction(snakesArray); 
+              pass = evalUserFunction === expectedOutput; 
+              break;
+            case 'stringReverse': 
+              const revStr = this.props.challenge.editor.input; 
+              evalUserFunction = userFunction(revStr); 
+              pass = evalUserFunction === expectedOutput; 
+              break;
+            default: 
+              const inputArray = this.props.challenge.editor.input.slice();
+              evalUserFunction = userFunction(inputArray); 
+              pass = JSON.stringify(evalUserFunction) === JSON.stringify(expectedOutput);
+              break; 
           }
+
+          pass ? this.props.onPass(this.props.challenge.name) : null; 
+          this.props.handleRun(evalUserFunction); 
+
+          this.setState({
+            output: JSON.stringify(evalUserFunction)
+          })
 
         } catch(e) {
           this.setState({
