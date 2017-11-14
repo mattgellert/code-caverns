@@ -7,7 +7,7 @@ import StartMenu from './StartMenu.js'
 export default class Game extends Component {
 
   state = {
-    challenges: [...ChallengeData],
+    challenges: getCleanChallengeData(),
     started: false,
     challenge_id: false,
     xPos: 368,

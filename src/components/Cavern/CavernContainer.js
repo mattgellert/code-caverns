@@ -290,7 +290,7 @@ export default class CavernContainer extends React.Component {
        dudeY: this.state.dude.y,
        update: false
      };
-
+     
      this.props.challenges.forEach(challenge => {
       const obstr = {
          left: challenge.obstruction.x,
