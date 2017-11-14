@@ -31,6 +31,7 @@ export default class App extends Component {
             <li><NavLink className="link right" to="/story">Story</NavLink></li>
           </ul>
           <h1 className="title">Code Caverns</h1>
+          <Route exact path="/" render={() => <Redirect to="/home"/>} />
           <Route exact path="/home" render={() => {
             return this.state.enter ? <Redirect to="/cavern"/> : <Home onEnter={this.handleEnter}/>
           }} />

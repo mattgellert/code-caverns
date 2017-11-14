@@ -71,7 +71,11 @@ function igniteBomb(str) {
       },
       expectedOutput: 4,
       code: `/*
-  Consider n stones numbered 0 to n-1 arranged in a circle with equal distance between each of the stones. Given n and a firstNumber, write a function that will return the number of the stone in the radially opposite position of the firstNumber stone. 
+  Consider n stones numbered 0 to n-1 arranged in a circle 
+  with equal distance between each of the stones. Given n 
+  and a firstNumber, write a function that will return the 
+  number of the stone in the radially opposite position of 
+  the firstNumber stone. 
   
   Example: 
     input: n = 10, firstNumber = 2 

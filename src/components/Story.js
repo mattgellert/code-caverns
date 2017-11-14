@@ -17,6 +17,8 @@ const Story = () => {
       <div className="story-body-container">
         <div className="story-body-spacer"/>
         <div className="story-body-wrapper">
+          <p className="story-body">June 2014</p>
+          <br/>
           <p className="story-body-bold">UPDATE: Injured cave explorer Johann Westhauser has been moved to a clinic in Murnau in Upper Bavaria following his dramatic rescue that ended his 11-day ordeal in caverns deep in the Bavarian Alps.</p>
           <br/>
           <p className="story-body">The 52-year-old has "safely arrived at the hospital," said the head of the mountain rescue service, Norbert Heiland after jubilant rescuers hoisted Westhauser to safety on Thursday after an "incredible" recovery effort by over 700 emergency personnel.</p>
