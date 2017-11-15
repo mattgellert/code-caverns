@@ -117,9 +117,12 @@ export default class Game extends Component {
       },
       body: JSON.stringify(data)
     })
-      .then(this.setState({
-        started: false
-      }, () => this.props.history.push('/home'))
+      .then(() => {
+        this.props.history.push('/code-caverns')
+        this.setState({
+          started: false
+        })
+      }
     );
   };
 
