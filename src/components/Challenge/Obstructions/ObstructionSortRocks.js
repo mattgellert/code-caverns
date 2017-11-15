@@ -4,9 +4,15 @@ import {Text, Rect, Layer} from 'react-konva';
 
 const ObstructionSortRocks = (props) => {
 
-    const rocks = props.attempt.map((rock, idx) => (
-      <Rect key={idx} x={((idx + 1) * 60)} y={200} width={50} height={(rock + 1) * -10} fill="#000000" />
-    ));
+  let rocks;
+
+    if (Array.isArray(props.attempt)){
+      rocks = props.attempt.map((rock, idx) => (
+        <Rect key={idx} x={((idx + 1) * 60)} y={200} width={50} height={(rock + 1) * -10} fill="#000000" />
+      ));
+    } else {
+      rocks = null;
+    }
 
 
     let description = props.description;

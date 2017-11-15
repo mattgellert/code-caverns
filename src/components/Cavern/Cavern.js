@@ -4,6 +4,8 @@ import Dude from './Dude.js';
 import WallContainer from './WallContainer.js';
 import CavernObstructionContainer from './CavernObstructionContainer.js';
 import './Cavern.css'
+import DankMusicShort from '../../sounds/DankMusicShort.m4a'
+
 
 export default class Cavern extends Component {
 
@@ -12,7 +14,16 @@ export default class Cavern extends Component {
     shadowImage: null
   }
 
+
+  componentWillUnmount() {
+    this.backgroundAudio.pause();
+  }
+
   componentDidMount() {
+    this.backgroundAudio = new Audio(DankMusicShort)
+    this.backgroundAudio.play();
+
+
     this.mapX = -1100;
     this.mapY = -900;
     this.mapCount = 0;

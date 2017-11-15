@@ -8,6 +8,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './CavernContainer.css'
 import FinalAnimation from './FinalAnimation.js'
 import ChallengeData from '../Challenge/ChallengeData.js';
+import RocksFalling from '../../sounds/RocksFalling.mp3'
+import RocksFalling1 from '../../sounds/RocksFalling.mp3'
+import RocksFalling2 from '../../sounds/RocksFalling.mp3'
+import Explosion from '../../sounds/Explosion.mp3'
+import WinChallengeMusic from '../../sounds/WinChallengeMusic.mov'
 
 export default class CavernContainer extends React.Component {
   state = {
@@ -425,6 +430,18 @@ export default class CavernContainer extends React.Component {
     this.props.history.push("/code-caverns")
   };
 
+  playFinalMusic() {
+    const audio = new Audio(Explosion)
+    const audio1 = new Audio(RocksFalling)
+    const audio2 = new Audio(RocksFalling1)
+    const audio3 = new Audio(RocksFalling2)
+    setTimeout(() => {audio.play()}, 6500)
+    audio1.play()
+    setTimeout(() => {audio2.play()}, 200)
+    setTimeout(() => {audio3.play()}, 400)
+  }
+
+
   render() {
     const challengeMode = this.state.challengeMode;
     const containerClasses = challengeMode ? "challenge-container" : "cavern-container"
@@ -458,6 +475,7 @@ export default class CavernContainer extends React.Component {
         </div>
       );
     } else {
+      this.playFinalMusic();
       return (
         <div className="final-animation">
           <FinalAnimation history={this.props.history} challengeId={this.props.challengeId} onUsernameOnQuit={this.handleUsernameOnQuit} onSaveGameFromQuit={this.saveGameFromQuit} usernameOnQuit={this.state.usernameOnQuit}/>

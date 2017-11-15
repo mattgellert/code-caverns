@@ -4,6 +4,7 @@ import ChallengeContainer from './Challenge/ChallengeContainer.js';
 import ChallengeData, {getCleanChallengeData} from './Challenge/ChallengeData.js';
 import StartMenu from './StartMenu.js'
 import './Game.css'
+import WinChallengeMusic from '../sounds/WinChallengeMusic.mov'
 
 export default class Game extends Component {
 
@@ -133,6 +134,11 @@ export default class Game extends Component {
   };
 
   handlePassChallenge = (challengeName) => {
+    if (challengeName !== "circleOfStones") {
+      const winMusic = new Audio(WinChallengeMusic);
+      winMusic.play();
+    };
+
     const updatedChallenges = this.state.challenges.map(challenge => {
       if (challenge.name === challengeName) {
         challenge.pass = true;
@@ -156,6 +162,7 @@ export default class Game extends Component {
       challenges: [...updatedChallenges]
     });
   };
+
 
 
   render() {
