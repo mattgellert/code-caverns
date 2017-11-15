@@ -49,7 +49,7 @@ export default class Cavern extends Component {
 
   render() {
     const shadow = this.flickerLights();
-    
+
     if (this.mapCount === 3) {
       this.mapX -= (this.props.updatedMapX)
       this.mapY -= (this.props.updatedMapY)
@@ -62,8 +62,8 @@ export default class Cavern extends Component {
         <Stage width={800} height={600}>
           <Layer>
             <Rect
-              width={2050}
-              height={1750}
+              width={2400}
+              height={2400}
               fillPatternImage={this.state.backgroundImage}
               x={this.mapX}
               y={this.mapY}
