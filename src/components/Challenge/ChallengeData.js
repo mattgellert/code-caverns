@@ -240,11 +240,15 @@ export function getCleanChallengeData() {
         input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6,1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1,9,8,7,6,7,8,9,8,7,6,5,4,3,2,2],
         expectedOutput: [7, 9, 12, 24, 33, 39],
         code: `/*
-  Given an array of numbers, find the indices of each occurance of the maximum value in the array.
+  Given an array of numbers, find the indices of each
+  occurance of the maximum value in the array.
 
-    These indices represent the positions of the pegs that you must remove from the table so that all pegs remaining lie below the line carved into the wall.
+    These indices represent the positions of the
+    pegs that youmust remove from the table so that
+    all pegs remaining lie below the line carved into
+    the wall.
 
-  Example:
+  Example: 
     input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6]
     expectedOutput: [7, 9, 12]
 */
