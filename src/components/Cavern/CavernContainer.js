@@ -419,7 +419,7 @@ export default class CavernContainer extends React.Component {
   };
 
   redirectToStory = () => {
-    this.props.history.push("/home")
+    this.props.history.push("/code-caverns")
   };
 
   render() {
