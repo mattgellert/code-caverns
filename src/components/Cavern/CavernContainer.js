@@ -15,6 +15,7 @@ import Explosion from '../../sounds/Explosion.mp3'
 import WinChallengeMusic from '../../sounds/WinChallengeMusic.mov'
 
 export default class CavernContainer extends React.Component {
+  
   state = {
     dude: {
       x: this.props.xPos,
