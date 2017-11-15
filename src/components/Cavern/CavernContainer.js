@@ -171,6 +171,9 @@ export default class CavernContainer extends React.Component {
         this.mapDeltaY += updatedMapY;
       };
 
+      this.updatedMapX = updatedMapX
+      this.updatedMapY = updatedMapY
+
       const dudeDeltaX = updatedDudeX - 368;
       const dudeDeltaY = updatedDudeY - 268;
 
@@ -431,7 +434,7 @@ export default class CavernContainer extends React.Component {
         <div className={containerClasses}>
           <ReactCSSTransitionGroup
             transitionName="cavern">
-            {challengeMode ? null : <Cavern dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
+            {challengeMode ? null : <Cavern updatedMapX={this.updatedMapX} updatedMapY={this.updatedMapY} dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
           </ReactCSSTransitionGroup>
           {challengeMode ? null : <button className="start quit" onClick={this.displayEndMenu}>Quit</button> }
           {this.state.paused ?

@@ -11,8 +11,6 @@ export default class App extends Component {
     enter: false
   };
 
-
-
   handleEnter = () => {
     this.setState({
       enter: true

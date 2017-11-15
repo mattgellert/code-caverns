@@ -13,6 +13,9 @@ export default class Cavern extends Component {
   }
 
   componentDidMount() {
+    this.mapX = -1100;
+    this.mapY = -900;
+    this.mapCount = 0;
     const backgroundImage = new window.Image();
     const shadowImage = new window.Image();
     backgroundImage.src = 'https://i.imgur.com/2b1AT0M.png';
@@ -44,17 +47,26 @@ export default class Cavern extends Component {
     }
   };
 
-  render() { 
+  render() {
     const shadow = this.flickerLights();
+    
+    if (this.mapCount === 3) {
+      this.mapX -= (this.props.updatedMapX)
+      this.mapY -= (this.props.updatedMapY)
+      this.mapCount = 0;
+    }
+    this.mapCount++;
 
     return(
       <div className="cavern">
         <Stage width={800} height={600}>
           <Layer>
             <Rect
-              width={1920}
-              height={2560}
+              width={2050}
+              height={1750}
               fillPatternImage={this.state.backgroundImage}
+              x={this.mapX}
+              y={this.mapY}
             />
           </Layer>
           <WallContainer walls={this.props.walls} />
