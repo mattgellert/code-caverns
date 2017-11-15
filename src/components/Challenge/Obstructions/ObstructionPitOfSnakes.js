@@ -1,9 +1,24 @@
 import React from 'react';
-import {Text, Rect, Layer} from 'react-konva';
+import {Text, Image, Layer} from 'react-konva';
 
 
-const ObstructionPitOfSnakes = (props) => {
-    let description = props.description;
+class ObstructionPitOfSnakes extends React.Component {
+  state = {
+    image: null
+  }
+
+  componentDidMount() {
+    const image = new window.Image(); 
+    image.onload = () => {
+      this.setState({
+        image
+      });
+    };
+    image.src = 'https://i.imgur.com/GrTOgIP.png'; 
+  }
+  
+  render() {
+    let description = this.props.description;
     let text = [""];
     let line = 0;
     const spacer = "                               ";
@@ -33,9 +48,11 @@ const ObstructionPitOfSnakes = (props) => {
 
     return (
       <Layer>
+        <Image x={150} y={0} image={this.state.image}/>
         {descriptionFragments}
       </Layer>
     );
+  }
 };
 
 export default ObstructionPitOfSnakes;

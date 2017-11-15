@@ -1,10 +1,24 @@
 import React from 'react';
-import {Text, Rect, Layer} from 'react-konva';
+import {Text, Image, Layer} from 'react-konva';
 
 
-const ObstructionCircleOfStones = (props) => {
+class ObstructionCircleOfStones extends React.Component {
+  state = {
+    image: null
+  }
 
-    let description = props.description;
+  componentDidMount() {
+    const image = new window.Image(); 
+    image.onload = () => {
+      this.setState({
+        image
+      });
+    };
+    image.src = 'https://i.imgur.com/fouAzc8.png'; 
+  }
+
+  render() {
+    let description = this.props.description;
     let text = [""];
     let line = 0;
     const spacer = "                               ";
@@ -34,9 +48,11 @@ const ObstructionCircleOfStones = (props) => {
 
     return (
       <Layer>
+        <Image x={150} y={0} image={this.state.image}/>
         {descriptionFragments}
       </Layer>
     );
+  }
 };
 
 export default ObstructionCircleOfStones;

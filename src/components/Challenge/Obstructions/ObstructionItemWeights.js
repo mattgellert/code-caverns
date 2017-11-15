@@ -1,9 +1,23 @@
 import React from 'react';
-import {Text, Rect, Layer} from 'react-konva';
+import {Text, Image, Layer} from 'react-konva';
 
-const ObstructionItemWeights = (props) => {
+class ObstructionItemWeights extends React.Component {
+  state = {
+    image: null
+  }
 
-    let description = props.description;
+  componentDidMount() {
+    const image = new window.Image(); 
+    image.onload = () => {
+      this.setState({
+        image
+      });
+    };
+    image.src = 'https://i.imgur.com/GRRYH60.png'; 
+  }
+
+  render() {
+    let description = this.props.description;
     let text = [""];
     let line = 0;
     const spacer = "                               ";
@@ -33,9 +47,11 @@ const ObstructionItemWeights = (props) => {
 
     return (
       <Layer>
+        <Image x={150} y={0} image={this.state.image}/>
         {descriptionFragments}
       </Layer>
     );
+  }
 };
 
 export default ObstructionItemWeights;
