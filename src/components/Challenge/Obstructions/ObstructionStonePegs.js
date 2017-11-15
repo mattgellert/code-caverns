@@ -3,17 +3,29 @@ import {Text, Image, Layer} from 'react-konva';
 
 class ObstructionStonePegs extends React.Component {
   state = {
+    passImage: null,
     image: null
   }
 
   componentDidMount() {
-    const image = new window.Image(); 
+    const passImage = new window.Image(); 
+    const image = new window.Image();
+    image.src = 'https://i.imgur.com/fzhtoXd.png';
+    // passImage = ''; 
+
     image.onload = () => {
       this.setState({
         image
       });
     };
-    image.src = 'https://i.imgur.com/fzhtoXd.png'; 
+
+    // passImage.onload = () => {
+    //   this.setState({
+    //     image
+    //   });
+    // };
+
+     
   }
 
   render() {
@@ -46,6 +58,7 @@ class ObstructionStonePegs extends React.Component {
     });
 
     return (
+
       <Layer>
         <Image x={150} y={0} image={this.state.image}/>
         {descriptionFragments}

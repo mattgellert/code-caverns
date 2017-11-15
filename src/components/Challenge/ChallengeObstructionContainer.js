@@ -15,25 +15,25 @@ export default class ChallengeObstructionContainer extends React.Component {
     let obstacle;
     switch (challengeName) {
       case 'sortRocks':
-        obstacle = <ObstructionSortRocks description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionSortRocks pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break;
       case 'igniteBomb':
-        obstacle = <ObstructionIgniteBomb description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionIgniteBomb pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break;
       case 'stringReverse':
-        obstacle = <ObstructionReverseString description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionReverseString pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break; 
       case 'circleOfStones':
-        obstacle = <ObstructionCircleOfStones description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionCircleOfStones pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break; 
       case 'pitOfSnakes':
-        obstacle = <ObstructionPitOfSnakes description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionPitOfSnakes pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break;
       case 'itemWeights': 
-        obstacle = <ObstructionItemWeights description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionItemWeights pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break; 
       case 'stonePegs':
-        obstacle = <ObstructionStonePegs description={this.props.description} attempt={this.props.attempt}/>
+        obstacle = <ObstructionStonePegs pass={this.props.pass} description={this.props.description} attempt={this.props.attempt}/>
         break;
       default:
         console.log('default obstacle');
