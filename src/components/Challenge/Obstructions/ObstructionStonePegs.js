@@ -11,7 +11,7 @@ class ObstructionStonePegs extends React.Component {
     const passImage = new window.Image(); 
     const image = new window.Image();
     image.src = 'https://i.imgur.com/fzhtoXd.png';
-    // passImage = ''; 
+    passImage.src = 'https://i.imgur.com/h4goBro.png';
 
     image.onload = () => {
       this.setState({
@@ -19,13 +19,11 @@ class ObstructionStonePegs extends React.Component {
       });
     };
 
-    // passImage.onload = () => {
-    //   this.setState({
-    //     image
-    //   });
-    // };
-
-     
+    passImage.onload = () => {
+      this.setState({
+        passImage
+      });
+    };
   }
 
   render() {
@@ -57,10 +55,11 @@ class ObstructionStonePegs extends React.Component {
       />)
     });
 
+    const currImage = this.props.pass ? this.state.passImage : this.state.image;
+      
     return (
-
       <Layer>
-        <Image x={150} y={0} image={this.state.image}/>
+        <Image x={150} y={0} image={currImage}/>
         {descriptionFragments}
       </Layer>
     );
