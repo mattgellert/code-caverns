@@ -10,6 +10,7 @@ import FinalAnimation from './FinalAnimation.js'
 import ChallengeData from '../Challenge/ChallengeData.js';
 
 export default class CavernContainer extends React.Component {
+  
   state = {
     dude: {
       x: this.props.xPos,
