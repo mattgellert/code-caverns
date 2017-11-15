@@ -5,17 +5,20 @@ const Story = () => {
   return (
     <div className="story">
       <div className="story-header-wrapper">
-        <div className="story-header-spacer"/>
         <div className="story-header">
-          <img className="story-header-image" src="https://www.thelocal.de/userdata/images/1403185163_westhauser.jpg" height="300" width="350"/>
-          <img className="story-header-image" src="https://www.thelocal.de/userdata/galleries/3775/heliboard.jpg" height="300" width="350"/>
-          <h2 className="title">Rescued cave explorer moved to clinic</h2>
-          <p className="subtitle">Story and photos taken directly from German media outlet <a href="https://www.thelocal.de/20140620/injured-cave-explorer-johann-westhauser-metres-from-daylight">The Local de</a></p>
+          <div className="row">
+            <img className="story-header-image" src="https://www.thelocal.de/userdata/galleries/3775/heliboard.jpg"/>
+            <img className="story-header-image" src="https://www.thelocal.de/userdata/images/1403185163_westhauser.jpg"/>
+          </div>
+          <div className="row">
+            <img className="story-header-image" src="https://www.thelocal.de/userdata/galleries/3775/caverescue1.jpg"/>
+            <img className="story-header-image" src="https://www.thelocal.de/userdata/galleries/3775/6._cave.jpg"/>
+          </div>
         </div>
-        <div className="story-header-spacer"/>
+          <h2 className="title">Rescued cave explorer moved to clinic</h2>
+          <p className="subtitle">Story and photos taken directly from German media outlet <a className="local-link" href="https://www.thelocal.de/20140620/injured-cave-explorer-johann-westhauser-metres-from-daylight">The Local de</a></p>
       </div>
       <div className="story-body-container">
-        <div className="story-body-spacer"/>
         <div className="story-body-wrapper">
           <p className="story-body">June 2014</p>
           <br/>
@@ -81,7 +84,6 @@ const Story = () => {
           <p className="story-body">Peters, the cave photographer, agreed, saying that "this is such a technically difficult cave that it must be reserved for professionals. Cave tourists should stay away. The thing to do is close it."</p>
           <br/>
         </div>
-        <div className="story-body-spacer"/>
       </div>
     </div>
   );

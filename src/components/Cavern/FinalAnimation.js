@@ -13,6 +13,8 @@ export default class FinalAnimation extends Component {
 
 
   componentDidMount() {
+    console.log("Final Animation CDM")
+    document.getElementsByClassName("app-title")[0].scrollIntoView()
     const image = new window.Image();
     image.src = 'https://i.imgur.com/xs8iG2m.png'; // Animation sprite sheet
     image.onload = () => {
@@ -61,34 +63,36 @@ export default class FinalAnimation extends Component {
             ?
               <div className="modal" id="pauseModel">
                 <div className="modal-content">
-                  <p>If you're done playing, enter your username and click save!</p>
-                  <form onSubmit={this.props.onSaveGameFromQuit}>
-                    <input type="text" onChange={this.props.onUsernameOnQuit} value={this.props.usernameOnQuit}/>
-                    <input type="submit" value="Save"/>
+                  <p className="modal-text">If you're done playing, enter your username and click save!</p>
+                  <form className="modal-form" onSubmit={this.props.onSaveGameFromQuit}>
+                    <input className="input" type="text" onChange={this.props.onUsernameOnQuit} value={this.props.usernameOnQuit}/>
+                    <input className="modal-save" type="submit" value="Save"/>
                   </form>
-                  <button onClick={this.redirectToStory}>Skip Save</button>
+                  <button className="skip" onClick={this.redirectToStory}>Skip Save</button>
                 </div>
               </div>
             : this.state.animationComplete && this.props.challengeId
-            ? <button onClick={this.props.onSaveGameFromQuit}>Leave the Cave!</button>
+            ? <button className="leave-cavern" onClick={this.props.onSaveGameFromQuit}>Leave the Cave!</button>
             : null
           }
-        <Stage width={800} height={600}>
-          <Layer>
-            <Sprite
-              x={0}
-              y={0}
-              ref='sprite'
-              image={this.state.image}
-              animation={animation}
-              animations={{
-                play: animationArray
-              }}
-              frameRate={7}
-              frameIndex={0}
-            />
-          </Layer>
-        </Stage>
+        <div className="stage-wrapper">
+          <Stage width={800} height={600}>
+            <Layer>
+              <Sprite
+                x={0}
+                y={0}
+                ref='sprite'
+                image={this.state.image}
+                animation={animation}
+                animations={{
+                  play: animationArray
+                }}
+                frameRate={7}
+                frameIndex={0}
+              />
+            </Layer>
+          </Stage>
+        </div>
       </div>
     );
   };

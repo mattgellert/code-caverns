@@ -1,0 +1,22 @@
+button.editor-button {
+  border-radius: 3px;
+  background-color: #333;
+  border: none;
+  margin-right: 10px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+button.editor-button:hover, button.skip:hover {
+  background-color: #111;
+  color: white;
+  box-shadow: 0px 0px 8px 2px #fff;
+}

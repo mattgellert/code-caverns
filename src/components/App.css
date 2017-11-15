@@ -3,10 +3,13 @@
   font-family: Courier;
 }
 
-h1.title {
+.app-title-wrapper {
+  padding: 40px 20px;
+}
+
+h1.app-title {
   text-align: center;
   font-size: 50px;
-  padding: 40px 20px;
 }
 
 body {
@@ -21,15 +24,17 @@ ul {
     background-color: #333;
 }
 
-li .left {
+.left {
     float: left;
+    transition: all 300ms;
 }
 
-li .right {
+.right {
   float: right;
+  transition: all 300ms;
 }
 
-li .link {
+.link {
     display: block;
     color: white;
     text-align: center;
@@ -37,10 +42,10 @@ li .link {
     text-decoration: none;
 }
 
-li .link:hover:not(.active) {
-    background-color: #111;
+.active {
+  color: #797979;
 }
 
-.active {
-    background-color: #111;
+.left:hover, .right:hover {
+  color: #797979;
 }
