@@ -4,19 +4,29 @@ import {Text, Image, Layer} from 'react-konva';
 
 class ObstructionPitOfSnakes extends React.Component {
   state = {
+    passImage: null,
     image: null
   }
 
   componentDidMount() {
+    const passImage = new window.Image(); 
     const image = new window.Image(); 
+    passImage.src = 'https://i.imgur.com/FtCmasx.png';
+    image.src = 'https://i.imgur.com/GrTOgIP.png';
+
     image.onload = () => {
       this.setState({
         image
       });
     };
-    image.src = 'https://i.imgur.com/GrTOgIP.png'; 
+
+    passImage.onload = () => {
+      this.setState({
+        passImage
+      });
+    };
   }
-  
+
   render() {
     let description = this.props.description;
     let text = [""];
@@ -46,9 +56,11 @@ class ObstructionPitOfSnakes extends React.Component {
       />)
     });
 
+    const currImage = this.props.pass ? this.state.passImage : this.state.image; 
+
     return (
       <Layer>
-        <Image x={150} y={0} image={this.state.image}/>
+        <Image x={150} y={0} image={currImage}/>
         {descriptionFragments}
       </Layer>
     );

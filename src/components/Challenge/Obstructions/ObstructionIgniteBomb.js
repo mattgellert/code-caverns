@@ -4,17 +4,27 @@ import {Text, Image, Layer} from 'react-konva';
 
 class ObstructionIgniteBomb extends React.Component {
   state = {
+    passImage: null,
     image: null
   }
 
   componentDidMount() {
+    const passImage = new window.Image(); 
+    passImage.src = 'https://i.imgur.com/hOy6m4C.png'; 
     const image = new window.Image(); 
+    image.src = 'https://i.imgur.com/mee3rgw.png'; 
+
     image.onload = () => {
       this.setState({
         image
       });
     };
-    image.src = 'https://i.imgur.com/mee3rgw.png'; 
+
+    passImage.onload = () => {
+      this.setState({
+        passImage
+      });
+    };
   }
 
   render() {
@@ -46,9 +56,11 @@ class ObstructionIgniteBomb extends React.Component {
       />)
     });
 
+    const currImage = this.props.pass ? this.state.passImage : this.state.image; 
+
     return (
       <Layer>
-        <Image x={150} y={0} image={this.state.image}/>
+        <Image x={150} y={0} image={currImage}/>
         {descriptionFragments}
       </Layer>
     );

@@ -4,17 +4,27 @@ import {Text, Image, Layer} from 'react-konva';
 
 class ObstructionReverseString extends React.Component {
   state = {
+    passImage: null,
     image: null
   }
 
   componentDidMount() {
+    const passImage = new window.Image(); 
     const image = new window.Image(); 
+    passImage.src = 'https://i.imgur.com/qQ6zyO8.png';
+    image.src = 'https://i.imgur.com/eNSwdto.png';
+
     image.onload = () => {
       this.setState({
         image
       });
     };
-    image.src = 'https://i.imgur.com/eNSwdto.png'; 
+
+    passImage.onload = () => {
+      this.setState({
+        passImage
+      });
+    };
   }
   
   render() {
@@ -46,9 +56,11 @@ class ObstructionReverseString extends React.Component {
       />)
     });
 
+    const currImage = this.props.pass ? this.state.passImage : this.state.image; 
+
     return (
       <Layer>
-        <Image x={150} y={0} image={this.state.image}/>
+        <Image x={150} y={0} image={currImage}/>
         {descriptionFragments}
       </Layer>
     );
