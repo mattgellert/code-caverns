@@ -1,4 +1,5 @@
-import React from 'react'; 
+import React from 'react';
+import './ErrorCard.css'
 
 class ErrorCard extends React.Component {
   render() {
@@ -8,6 +9,6 @@ class ErrorCard extends React.Component {
       </div>
     )
   }
-}; 
+};
 
 export default ErrorCard;

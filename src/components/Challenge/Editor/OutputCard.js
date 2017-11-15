@@ -1,7 +1,8 @@
-import React from 'react'; 
+import React from 'react';
+import './OutputCard.css'
 
 const OutputCard = ({output}) => {
-  
+
   if (output === undefined) {
     output = "undefined"
   }

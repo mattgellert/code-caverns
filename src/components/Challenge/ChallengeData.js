@@ -3,7 +3,7 @@ export function getCleanChallengeData() {
     {
       name: "sortRocks",
       description: "You've encountered a ledge, but you notice a pile of rocks and realize if you can sort these from smallest to largest, you can climb over and continue.",
-      pass: false,
+      pass: true,
       editor: {
         input: [9,6,3,4,5,1,0,2,8,7,10],
         expectedOutput: [0,1,2,3,4,5,6,7,8,9,10],
@@ -29,7 +29,7 @@ export function getCleanChallengeData() {
     {
       name: 'igniteBomb',
       description: "You find a bomb on the cavern floor. Beyond the bomb there is a wall with large cracks in it. If you can ignite the bomb, you should be able to destroy the wall and see what lies on the other side.",
-      pass: false,
+      pass: true,
       editor: {
         input: "eapoyvnsdal;jpowaeryhgas;ldkfjopewiurl;asdkfas;dluasodpifubhyawehrlahueioabdsyugterwfsvdfsgasdouydofiuahsdalpdoimfbdkjdkduippoiuije!;lasdjf;l",
         expectedOutput: [58, 72, 94, 112, 131],
@@ -100,7 +100,7 @@ export function getCleanChallengeData() {
     {
       name: 'stringReverse',
       description: 'You encounter a stone wall with an inscription written on what appears to be a door. If you can decode the message, perhaps you will be able to open the door and see what lies beyond.',
-      pass: false,
+      pass: true,
       editor: {
         input: '.tnemnethgilne ot htap eht laever llahs ecirht derettu yltfiwS .ahnidaB uhkA',
         expectedOutput: 'Akhu Badinha. Swiftly uttered thrice shall reveal the path to enlightenment.',
@@ -130,7 +130,7 @@ export function getCleanChallengeData() {
     {
       name: 'pitOfSnakes',
       description: 'You encounter a pit of snakes blocking the passageway. If you can carefully jump inbetween the snakes, you will be able to continue through the cavern.',
-      pass: false,
+      pass: true,
       editor: {
         input: [1, 4, 10, 6, 2],
         expectedOutput: 7,
@@ -179,7 +179,7 @@ export function getCleanChallengeData() {
     {
       name: 'itemWeights',
       description: 'You encounter an alter with two priceless items on it. You are able to assess their values, but you are only strong enough carry a certain weight (maxW). Take as much as you are able to carry!',
-      pass: false,
+      pass: true,
       editor: {
         input: {
           value1: 15,
@@ -230,34 +230,34 @@ export function getCleanChallengeData() {
         width: 200,
         imageURL: 'https://i.imgur.com/bnSh1oF.png'
       }
-    }, 
+    },
 
     {
       name: 'stonePegs',
-      description: 'You have encountered a table with stone pegs sitting vertically in slots in the table. You notice a line carved in the wall behind the table. Most of the pegs extending from the table are below the line carved in the wall, however some of the pegs extend beyond the line. You decide to try and pull out the pegs that extend beyond the line and see what happens...', 
-      pass: false, 
+      description: 'You have encountered a table with stone pegs sitting vertically in slots in the table. You notice a line carved in the wall behind the table. Most of the pegs extending from the table are below the line carved in the wall, however some of the pegs extend beyond the line. You decide to try and pull out the pegs that extend beyond the line and see what happens...',
+      pass: true,
       editor: {
         input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6,1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1,9,8,7,6,7,8,9,8,7,6,5,4,3,2,2],
         expectedOutput: [7, 9, 12, 24, 33, 39],
         code: `/*
-  Given an array of numbers, find the indices of each occurance of the maximum value in the array. 
-  
-    These indices represent the positions of the pegs that you must remove from the table so that all pegs remaining lie below the line carved into the wall. 
-    
-  Example: 
+  Given an array of numbers, find the indices of each occurance of the maximum value in the array.
+
+    These indices represent the positions of the pegs that you must remove from the table so that all pegs remaining lie below the line carved into the wall.
+
+  Example:
     input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6]
     expectedOutput: [7, 9, 12]
 */
 
 function findIndicesOfMax(arr) {
-  // your code here 
+  // your code here
 }`,
-        attempt: '', 
+        attempt: '',
       },
       obstruction: {
         x: -250,
         y: 750,
-        height: 50, 
+        height: 50,
         width: 200,
         imageURL: 'https://i.imgur.com/z4IvWjC.png'
       }

@@ -31,6 +31,7 @@ export default class CavernContainer extends React.Component {
   };
 
   componentDidMount() {
+    document.getElementsByClassName("app-title")[0].scrollIntoView()
     const image = new window.Image();
 
     image.onload = () => {
@@ -423,25 +424,26 @@ export default class CavernContainer extends React.Component {
 
   render() {
     const challengeMode = this.state.challengeMode;
+    const containerClasses = challengeMode ? "challenge-container" : "cavern-container"
 
     if (!this.finalChallengeComplete) {
       return (
-        <div className="cavern-container">
+        <div className={containerClasses}>
           <ReactCSSTransitionGroup
             transitionName="cavern">
             {challengeMode ? null : <Cavern dudeDeltaX={this.state.dude.deltaX} dudeDeltaY={this.state.dude.deltaY} walls={this.state.walls} challenges={this.props.challenges} dude={this.state.dude} image={this.state.image} onMove={this.dudeMove} handleSpriteRef={this.getSpriteRef}/>}
           </ReactCSSTransitionGroup>
-          {challengeMode ? null : <button className="start" onClick={this.displayEndMenu}>Quit</button> }
+          {challengeMode ? null : <button className="start quit" onClick={this.displayEndMenu}>Quit</button> }
           {this.state.paused ?
             <div className="modal" id="pauseModel">
               <div className="modal-content">
                 <span className="close" onClick={this.removeEndMenu}>&times;</span>
-                <p>If you're done playing, enter your username and click save!</p>
-                <form onSubmit={this.saveGameFromQuit}>
-                  <input type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
-                  <input type="submit" value="Save"/>
+                <p className="modal-text">If you're done playing, enter your username and click save!</p>
+                <form className="modal-form" onSubmit={this.saveGameFromQuit}>
+                  <input className="input" type="text" onChange={this.handleUsernameOnQuit} value={this.state.usernameOnQuit}/>
+                  <input className="modal-save" type="submit" value="Save"/>
                 </form>
-                <button className="start" onClick={this.redirectToStory}>Skip Save</button>
+                <button className="skip" onClick={this.redirectToStory}>Skip Save</button>
               </div>
             </div>
             : null

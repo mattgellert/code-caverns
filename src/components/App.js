@@ -11,6 +11,8 @@ export default class App extends Component {
     enter: false
   };
 
+
+
   handleEnter = () => {
     this.setState({
       enter: true
@@ -26,12 +28,14 @@ export default class App extends Component {
       <Router>
         <div className="route-wrapper">
           <ul className="navlink-wrapper">
-            <li><NavLink className="link left" to="/home">Home</NavLink></li>
+            <li><NavLink className="link left" to="/home">&lt;CodeCaverns/&gt;</NavLink></li>
             <li><NavLink className="link right" to="/cavern">Cavern</NavLink></li>
             <li><NavLink className="link right" to="/story">Story</NavLink></li>
           </ul>
           <Route exact path="/" render={() => <Redirect to="/home"/>} />
-          <h1 className="title">&lt;CodeCaverns/&gt;</h1>
+          <div className="app-title-wrapper">
+            <h1 className="app-title">&lt;CodeCaverns/&gt;</h1>
+          </div>
           <Route exact path="/home" render={() => {
             return this.state.enter ? <Redirect to="/cavern"/> : <Home onEnter={this.handleEnter}/>
           }} />

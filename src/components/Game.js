@@ -3,6 +3,7 @@ import CavernContainer from './Cavern/CavernContainer.js'
 import ChallengeContainer from './Challenge/ChallengeContainer.js';
 import ChallengeData, {getCleanChallengeData} from './Challenge/ChallengeData.js';
 import StartMenu from './StartMenu.js'
+import './Game.css'
 
 export default class Game extends Component {
 
@@ -158,7 +159,7 @@ export default class Game extends Component {
     const started = this.state.started;
 
     return (
-      <div>
+      <div className="cavern-container-wrapper">
         {started ? <CavernContainer history={this.props.history} challengeId={this.state.challenge_id} oldGame={this.state.oldGame} mapDeltaX={this.state.mapDeltaX} mapDeltaY={this.state.mapDeltaY} xPos={this.state.xPos} yPos={this.state.yPos} endGame={this.endGame} getCode={this.handleGetCode} challenges={this.state.challenges} onUpdateChallenges={this.handleUpdateChallenges} onPassChallenge={this.handlePassChallenge}/> : <StartMenu newGame={this.newGame} resumeOldGame={this.resumeOldGame} />}
       </div>
     );

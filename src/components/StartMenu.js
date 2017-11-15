@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Menu.css'
+import './StartMenu.css'
 
 export default class StartMenu extends Component {
 
@@ -22,9 +22,8 @@ export default class StartMenu extends Component {
       .then(resp => resp.json())
       .then(games => {
         if (!games.error) {
-          debugger
-          this.historyDisplay = (<ul>{games.games.map((game, idx) => {
-            return (<li onClick={this.props.resumeOldGame} value={game.challenge_id} key={idx}>Game {idx + 1} || Created {new Date(game.created_at).toUTCString()}</li>)
+          this.historyDisplay = (<ul className="historic-game-wrapper">{games.games.map((game, idx) => {
+            return (<li className="historic-game" onClick={this.props.resumeOldGame} value={game.challenge_id} key={idx}>Game {idx + 1} || Created {new Date(game.created_at).toUTCString()}</li>)
           })}</ul>);
           this.setState({
             showHistory: true
@@ -51,11 +50,11 @@ export default class StartMenu extends Component {
   render() {
     return (
       <div className="menu-wrapper">
-        <h1>The untold story of Johann Westhauser</h1>
+        <h1 className="start-title">The untold story of Johann Westhauser</h1>
         { this.state.showResumeForm ?
-          <form onSubmit={this.retrieveGames}>
-            <input onChange={this.handleUsername} type="text" placeholder="Enter your username" value={this.state.username}/>
-            <input type="submit" value="Retrieve Games"/>
+          <form className="retrieve-form" onSubmit={this.retrieveGames}>
+            <input className="retrieve-input" onChange={this.handleUsername} type="text" placeholder="Enter your username" value={this.state.username}/>
+            <input className="start" type="submit" value="Retrieve Games"/>
           </form>
            : <button className="start" onClick={this.displayResumeForm}>Resume Game</button> }
         { this.state.showHistory ? this.historyDisplay : null }
