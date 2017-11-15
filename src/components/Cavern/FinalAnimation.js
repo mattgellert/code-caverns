@@ -63,7 +63,7 @@ export default class FinalAnimation extends Component {
             ?
               <div className="modal" id="pauseModel">
                 <div className="modal-content">
-                  <p className="modal-text">If you're done playing, enter your username and click save!</p>
+                  <p className="modal-text">To save your progress, enter your username and click save!</p>
                   <form className="modal-form" onSubmit={this.props.onSaveGameFromQuit}>
                     <input className="input" type="text" onChange={this.props.onUsernameOnQuit} value={this.props.usernameOnQuit}/>
                     <input className="modal-save" type="submit" value="Save"/>
@@ -75,25 +75,29 @@ export default class FinalAnimation extends Component {
             ? <button className="leave-cavern" onClick={this.props.onSaveGameFromQuit}>Leave the Cave!</button>
             : null
           }
-        <div className="stage-wrapper">
-          <Stage width={800} height={600}>
-            <Layer>
-              <Sprite
-                x={0}
-                y={0}
-                ref='sprite'
-                image={this.state.image}
-                animation={animation}
-                animations={{
-                  play: animationArray
-                }}
-                frameRate={7}
-                frameIndex={0}
-              />
-            </Layer>
-          </Stage>
+        {!this.state.animationComplete ?
+          <div className="stage-wrapper">
+            <Stage width={800} height={600}>
+              <Layer>
+                <Sprite
+                  x={0}
+                  y={0}
+                  ref='sprite'
+                  image={this.state.image}
+                  animation={animation}
+                  animations={{
+                    play: animationArray
+                  }}
+                  frameRate={7}
+                  frameIndex={0}
+                />
+              </Layer>
+            </Stage>
+          </div>
+        : null
+        }
         </div>
-      </div>
+
     );
   };
 };

@@ -233,7 +233,7 @@ export default class CavernContainer extends React.Component {
         updatedMapX = (this.rightMoves - this.leftMoves) * step;
       };
     };
-    if (this.state.dude.x > 600) { //if against or beyond the right bound
+    if (this.state.dude.x > 536) { //if against or beyond the right bound
       if (this.leftMoves === 0 && this.rightMoves > 0) {
         updatedDudeX = this.state.dude.x; //keep dude to right bound
         updatedMapX = (this.rightMoves - this.leftMoves) * step;
@@ -245,7 +245,7 @@ export default class CavernContainer extends React.Component {
         updatedMapY = (this.downMoves - this.upMoves) * step;
       };
     };
-    if (this.state.dude.y > 450) { //if against or beyond the lower bound
+    if (this.state.dude.y > 386) { //if against or beyond the lower bound
       if (this.upMoves === 0 && this.downMoves > 0) {
         updatedDudeY = this.state.dude.y; //keep dude to lower bound
         updatedMapY = (this.downMoves - this.upMoves) * step;

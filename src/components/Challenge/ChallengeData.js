@@ -248,7 +248,7 @@ export function getCleanChallengeData() {
     all pegs remaining lie below the line carved into
     the wall.
 
-  Example: 
+  Example:
     input: [1,5,8,6,3,4,8,9,4,9,2,3,9,4,5,6]
     expectedOutput: [7, 9, 12]
 */
