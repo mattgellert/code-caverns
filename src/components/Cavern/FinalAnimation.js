@@ -28,7 +28,7 @@ export default class FinalAnimation extends Component {
           this.setState({
             animationComplete: true
           });
-        }, 16000);
+        }, 16500);
       });
     };
   };

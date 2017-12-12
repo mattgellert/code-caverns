@@ -15,7 +15,7 @@ import Explosion from '../../sounds/Explosion.mp3'
 import WinChallengeMusic from '../../sounds/WinChallengeMusic.mov'
 
 export default class CavernContainer extends React.Component {
-  
+
   state = {
     dude: {
       x: this.props.xPos,
@@ -436,10 +436,16 @@ export default class CavernContainer extends React.Component {
     const audio1 = new Audio(RocksFalling)
     const audio2 = new Audio(RocksFalling1)
     const audio3 = new Audio(RocksFalling2)
-    setTimeout(() => {audio.play()}, 6500)
+    setTimeout(() => {audio.play()}, 6550)
     audio1.play()
     setTimeout(() => {audio2.play()}, 200)
-    setTimeout(() => {audio3.play()}, 400)
+    setTimeout(() => {audio3.play()}, 700)
+    setTimeout(() => {
+      audio.pause()
+      audio1.pause()
+      audio2.pause()
+      audio3.pause()
+    }, 20000)
   }
 
 
