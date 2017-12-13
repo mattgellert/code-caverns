@@ -1,7 +1,8 @@
 # Code Caverns
-Explore the cavern and solve code challenges along the way. Built with React.js, React-Konva (game map), and React-Ace (editor).
+Explore the cavern and solve code challenges along the way. Built with React.js, React-Konva (game map), and React-Ace (editor). Back end API built with Ruby on Rails for recording User games, including position, complete challenges, and incomplete challenges.
 
-GitHub: https://github.com/mattgellert/code-caverns-front-end
+GitHub (front): https://github.com/mattgellert/code-caverns-front-end
+GitHub (back): https://github.com/mattgellert/code-caverns-back-end
 
 Built for the week 12 React group project at Flatiron with Ian Shaw (xxDOOMbox).
 
