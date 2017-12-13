@@ -1,4 +1,10 @@
 # Code Caverns
+Explore the cavern and solve code challenges along the way. Built with React.js, React-Konva (game map), and React-Ace (editor).
+
+GitHub: https://github.com/mattgellert/code-caverns-front-end
+
+Built for the week 9 React group project at Flatiron with Ian Shaw (xxDOOMbox).
+
 <img src="https://media.giphy.com/media/l4EoNmcZukoGf5kBO/giphy.gif" height="500px"/>
 
 ## Explore The Cave
