@@ -3,7 +3,7 @@ Explore the cavern and solve code challenges along the way. Built with React.js,
 
 GitHub: https://github.com/mattgellert/code-caverns-front-end
 
-Built for the week 9 React group project at Flatiron with Ian Shaw (xxDOOMbox).
+Built for the week 12 React group project at Flatiron with Ian Shaw (xxDOOMbox).
 
 <img src="https://media.giphy.com/media/l4EoNmcZukoGf5kBO/giphy.gif" height="500px"/>
 
